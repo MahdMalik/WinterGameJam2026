@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Closed: {fileID: 21300000, guid: 04e77b640b2f6b842ab68aae5db6fd47, type: 3}
   Open: {fileID: 21300000, guid: fe9267e25ad37aa4996388b30e5fc9b0, type: 3}
+  DoorSprite: {fileID: 882674952}
 --- !u!1 &1095252128
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,9 +293,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -101291131
+  m_SortingLayer: 2
+  m_SortingOrder: 10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3140,9 +3141,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -178292337
-  m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingLayerID: -101291131
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3208,8 +3209,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf932298887c1d44da619dddf14d4b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Up: {fileID: 0}
+  Right: {fileID: 0}
+  Down: {fileID: 0}
+  Left: {fileID: 0}
   rb: {fileID: 1912858128}
   PlayerSpeed: 200
+  PlayerFacing: 3
+  PlayerSprite: {fileID: 1912858126}
 --- !u!1 &2116085960
 GameObject:
   m_ObjectHideFlags: 0
