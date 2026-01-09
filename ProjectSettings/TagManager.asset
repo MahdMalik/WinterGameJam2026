@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Door
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
+  - Sign
+  - Enemy
+  - HackDoor
   - 
   - 
   - 

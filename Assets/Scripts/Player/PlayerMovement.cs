@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Sprite Right;
     [SerializeField] Sprite Down;
     [SerializeField] Sprite Left;
+    [SerializeField] public bool OpeningDoor;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject interactSquare;
     [SerializeField] private BoxCollider2D interactHitbox;
@@ -19,18 +20,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Movement
         rb.velocity = new Vector2((Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed), (Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed));
         
         
         
-        
+        //Facing Logic
         if(rb.velocity.x == 0 && rb.velocity.y > 0) {
             PlayerFacing = 1;
         }//Up
         if (rb.velocity.x > 0) {
             PlayerFacing = 2;
         }//Right
-        if (rb.velocity.x == 0 && rb.velocity.y <= 0) {
+        if (rb.velocity.x == 0 && rb.velocity.y < 0) {
             PlayerFacing = 3;
             
         }//Down
@@ -51,12 +53,13 @@ public class PlayerMovement : MonoBehaviour
             PlayerSprite.sprite = Left;
             interactSquare.transform.position = new Vector3((Player.transform.position.x - 1.0f), Player.transform.position.y, Player.transform.position.z);
         }
-
-
-
+    }
+    void Update() {
+        OpeningDoor = false;
+        //Interaction. Checks interact hitbox in front of player. Then activates functions based on what is there.
         if(Input.GetKeyDown(KeyCode.Z)) {
             if (interactHitbox.IsTouchingLayers(LayerMask.GetMask("Door"))) {
-                
+                OpeningDoor = true;
             }
         }
     }
