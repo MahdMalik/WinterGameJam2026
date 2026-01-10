@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int PlayerFacing = 3;
     [SerializeField] private SpriteRenderer PlayerSprite;
 
+    public static Action ResetGame;
+
+    void Start()
+    {
+        Battery.OnPlayerDied += ResetPlayer;
+    }
 
     void FixedUpdate()
     {
         //Movement
-        rb.velocity = new Vector2((Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed), (Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed));
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed);
         
         
         
@@ -42,16 +49,16 @@ public class PlayerMovement : MonoBehaviour
         }//Left
         if(PlayerFacing == 1) {
             PlayerSprite.sprite = Up;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x, (Player.transform.position.y + 1.0f), Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1.0f, Player.transform.position.z);
         } else if(PlayerFacing == 2) {
             PlayerSprite.sprite = Right;
-            interactSquare.transform.position = new Vector3((Player.transform.position.x + 1.0f), Player.transform.position.y, Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(Player.transform.position.x + 1.0f, Player.transform.position.y, Player.transform.position.z);
         } else if(PlayerFacing == 3) {
             PlayerSprite.sprite = Down;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x, (Player.transform.position.y - 1.0f), Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y - 1.0f, Player.transform.position.z);
         } else {
             PlayerSprite.sprite = Left;
-            interactSquare.transform.position = new Vector3((Player.transform.position.x - 1.0f), Player.transform.position.y, Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(Player.transform.position.x - 1.0f, Player.transform.position.y, Player.transform.position.z);
         }
     }
     void Update() {
@@ -62,5 +69,12 @@ public class PlayerMovement : MonoBehaviour
                 OpeningDoor = true;
             }
         }
+    }
+
+    void ResetPlayer()
+    {
+        Player.transform.position = Vector3.zero;
+        rb.velocity = Vector2.zero;
+        ResetGame.Invoke();
     }
 }
