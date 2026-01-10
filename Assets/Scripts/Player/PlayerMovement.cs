@@ -30,24 +30,41 @@ public class PlayerMovement : MonoBehaviour
     {
         //Movement
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed);
-        
-        
-        
+        }
+
+
+    void Update() {
+        OpeningDoor = false;
+        //Interaction. Checks interact hitbox in front of player. Then activates functions based on what is there.
+        if(Input.GetKeyDown(KeyCode.Z)) {
+            if (interactHitbox.IsTouchingLayers(LayerMask.GetMask("Door"))) {
+                OpeningDoor = true;
+            }
+        }
+
+                //Check if walking
+        if (rb.velocity.x == 0 && rb.velocity.y == 0) {
+            playerAnim.SetBool("Walking", false);
+        } else {
+            playerAnim.SetBool("Walking", true);
         //Facing Logic
         if(rb.velocity.x == 0 && rb.velocity.y > 0) {
             PlayerFacing = 1;
+            playerAnim.SetInteger("WalkingDirection", 1);
         }//Up
         if (rb.velocity.x > 0) {
             PlayerFacing = 2;
+            playerAnim.SetInteger("WalkingDirection", 2);
         }//Right
         if (rb.velocity.x == 0 && rb.velocity.y < 0) {
             PlayerFacing = 3;
-            
+            playerAnim.SetInteger("WalkingDirection", 3);
         }//Down
         if (rb.velocity.x < 0) {
             PlayerFacing = 4;
-            
+            playerAnim.SetInteger("WalkingDirection", 4);
         }//Left
+        }
         if(PlayerFacing == 1) {
             PlayerSprite.sprite = Up;
             interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1.0f, Player.transform.position.z);
@@ -60,15 +77,6 @@ public class PlayerMovement : MonoBehaviour
         } else {
             PlayerSprite.sprite = Left;
             interactSquare.transform.position = new Vector3(Player.transform.position.x - 1.0f, Player.transform.position.y, Player.transform.position.z);
-        }
-    }
-    void Update() {
-        OpeningDoor = false;
-        //Interaction. Checks interact hitbox in front of player. Then activates functions based on what is there.
-        if(Input.GetKeyDown(KeyCode.Z)) {
-            if (interactHitbox.IsTouchingLayers(LayerMask.GetMask("Door"))) {
-                OpeningDoor = true;
-            }
         }
     }
 
