@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float PlayerSpeed;
     [SerializeField] private int PlayerFacing = 3;
     [SerializeField] private SpriteRenderer PlayerSprite;
+    [SerializeField] Animator playerAnim;
 
     public static Action ResetGame;
 

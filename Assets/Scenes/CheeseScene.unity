@@ -15057,7 +15057,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 12
-      m_TileSpriteIndex: 17
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -21247,7 +21247,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 9
-      m_TileSpriteIndex: 12
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -21297,7 +21297,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 16
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -29074,12 +29074,12 @@ Tilemap:
     m_Data: {fileID: 1598380633, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 6e212edb4fd12724e999b548d5aef797, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 958866565, guid: a644236b0a659fb4b8cec8d90c634925, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2336
     m_Data: {fileID: 1112536462, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1597094097, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
+    m_Data: {fileID: 958866565, guid: a644236b0a659fb4b8cec8d90c634925, type: 3}
   - m_RefCount: 152
     m_Data: {fileID: -1299363734, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
   - m_RefCount: 9
@@ -29089,9 +29089,9 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -1170431529, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: 1597094097, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: 525638030, guid: 68e456792b47a054cb275c2f12b37646, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 1079e6a061f26754ea0e4c5eeb98c67a, type: 3}
   - m_RefCount: 2
@@ -29628,6 +29628,7 @@ GameObject:
   - component: {fileID: 1912858129}
   - component: {fileID: 1912858128}
   - component: {fileID: 1912858130}
+  - component: {fileID: 1912858131}
   m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
@@ -29755,6 +29756,7 @@ MonoBehaviour:
   PlayerSpeed: 200
   PlayerFacing: 3
   PlayerSprite: {fileID: 1912858126}
+  playerAnim: {fileID: 1912858131}
 --- !u!61 &1912858130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29800,6 +29802,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1912858131
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912858125}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00d6f26dd92397a46a0da77d0f27efc2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2116085960
 GameObject:
   m_ObjectHideFlags: 0
