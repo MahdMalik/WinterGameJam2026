@@ -13,17 +13,24 @@ public class Door : MonoBehaviour
     [SerializeField] BoxCollider2D doorHitbox;
     [SerializeField] float OpenTime;
     [SerializeField] private GameObject Player;
+    private bool SealOpened;
+    private int DoorOpen = 0;
 
     void Update()
     {
         if(Player.GetComponent<PlayerMovement>().OpeningDoor) {
-            OpenDoor();
+            ChangeDoor();
         }
     }
-    public void OpenDoor() {
+    public void ChangeDoor() {
         if (doorCheckHitbox.IsTouchingLayers(LayerMask.GetMask("Player"))) {
-            Debug.Log("AAAAA");
-            StartCoroutine(OpenTheDoor(OpenTime));
+            if (DoorOpen == 0) {
+                DoorOpen = 2;
+                StartCoroutine(OpenTheDoor(OpenTime));
+            } else if (DoorOpen == 1) {
+                DoorOpen = 2;
+                StartCoroutine(CloseTheDoor(OpenTime));
+            }
         }
     }
 
@@ -37,5 +44,17 @@ public class Door : MonoBehaviour
     yield return new WaitForSeconds(time);
     DoorSprite.sprite = Open;
     yield return new WaitForSeconds(time);
+    DoorOpen = 1;
+ }
+
+ private IEnumerator CloseTheDoor(float time) {
+    DoorSprite.sprite = PartOpen;
+    yield return new WaitForSeconds(time);
+    DoorSprite.sprite = PartClosed;
+    doorHitbox.isTrigger = false;
+    yield return new WaitForSeconds(time);
+    DoorSprite.sprite = Closed;
+    yield return new WaitForSeconds(time);
+    DoorOpen = 0;
  }
 }
