@@ -45,7 +45,7 @@ public abstract class Item : MonoBehaviour
 
     protected void ItemTouched()
     {
-        if(!theItemUi.isInventoryFull())
+        if(!theItemUi.IsInventoryFull())
         {
             // Debug.Log("GRAHH");
             inInventory = true;
