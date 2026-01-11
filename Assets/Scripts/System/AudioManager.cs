@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] musicSounds, sfxSounds;
@@ -19,8 +19,16 @@ public class AudioManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        if(SceneManager.GetActiveScene().buildIndex == 0) {
+            PlayMusic("Title");
+        } else if (SceneManager.GetActiveScene().buildIndex == 1) {
+
+        }
+    }
+
+    public void setVolume(float volume) {
+        musicSource.volume = volume;
     }
 }

@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 public class SceneManagerer : MonoBehaviour
 {
     public static SceneManagerer instance;
-    [SerializeField] private GameObject AudioManager;
+    
+
+    public float volume;
+    public bool volumeChanging = true;
+    public float currentVolume = 0.0f;
+    [SerializeField] GameObject MusicManagement;
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
@@ -15,26 +20,43 @@ public class SceneManagerer : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            volume = 0.3f;
+        }
+        MusicManagement = GameObject.Find("MusicManager");
+        StartCoroutine(FadeInMusic());
         
     }
     
-
-    void Start()
-    {
-        if(SceneManager.GetActiveScene().buildIndex == 0) {
-            AudioManager.GetComponent<AudioManager>().PlayMusic("Menu");
-        } else if (SceneManager.GetActiveScene().buildIndex == 1) {
-
+    IEnumerator FadeInMusic() {
+        volumeChanging = true;
+        currentVolume = 0.0f;
+        for (int i = 0; i < 50; i++) {
+            currentVolume += volume/50.0f;
+            yield return new WaitForSeconds(0.03f);
         }
+        currentVolume = volume;
+        volumeChanging = false;
     }
+
 
     public void Next() {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    // Update is called once per frame
+    public void volumeSet(System.Single sliderValue) {
+        if (!volumeChanging) {
+            volume = sliderValue;
+        }
+    }
+
     void Update()
     {
-        
+        if (!volumeChanging) {
+            currentVolume = volume;
+        }
+        MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
     }
 }
