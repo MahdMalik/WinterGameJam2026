@@ -28,6 +28,10 @@ public class SceneManagerer : MonoBehaviour
         }
     }
 
+    public void Next() {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     // Update is called once per frame
     void Update()
     {
