@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -612,10 +612,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 730508800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.26000002, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 38, y: 38}
+  m_AnchoredPosition: {x: 6, y: 0}
+  m_SizeDelta: {x: 26, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556898148
 MonoBehaviour:
@@ -630,14 +630,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d2ae888929785b945afeaaf7ae79e3b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -861,9 +861,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767018861}
+  - component: {fileID: 767018863}
   - component: {fileID: 767018862}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Lightsaber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -878,7 +879,7 @@ Transform:
   m_GameObject: {fileID: 767018860}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.2384655}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -922,10 +923,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingLayerID: -178292337
+  m_SortingLayer: 2
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 6c136d10e00596840918c1308c408759, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -936,6 +937,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &767018863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767018860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca62507e6266d1e4189841cb39c1b239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Lightsaber
+  worldPos: {x: 0, y: 0}
+  inInventory: 0
+  image: {fileID: 21300000, guid: 6c136d10e00596840918c1308c408759, type: 3}
+  cooldown: 0
+  theItemUi: {fileID: 1326316393}
 --- !u!1 &780965810
 GameObject:
   m_ObjectHideFlags: 0
@@ -26706,7 +26725,7 @@ Transform:
   m_GameObject: {fileID: 1189896394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 359.03494, y: 371.70013, z: 3.2384655}
+  m_LocalPosition: {x: 0, y: 0, z: 3.2384655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27008,14 +27027,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ab9efc0f9db20ff4fbf306627d9e2e05, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27219,6 +27238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbde7923d91f9e4c90ac9f3af234ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numItemsInInventory: 4
 --- !u!1 &1338863340
 GameObject:
   m_ObjectHideFlags: 0
@@ -71643,9 +71663,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1912858127}
   - {fileID: 882674953}
+  - {fileID: 1189896395}
   - {fileID: 124912521}
   - {fileID: 1265690877}
   - {fileID: 670111755}
   - {fileID: 2116085962}
   - {fileID: 1074637740}
-  - {fileID: 1189896395}
