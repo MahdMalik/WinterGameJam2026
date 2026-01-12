@@ -26103,7 +26103,7 @@ PrefabInstance:
       objectReference: {fileID: 1061256499}
     - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: activationTime
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: swordSlashClip

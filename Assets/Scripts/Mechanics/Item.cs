@@ -141,6 +141,6 @@ public abstract class Item : MonoBehaviour
 
     public bool getActivated()
     {
-        return inCooldown;
+        return activated;
     }
 }
