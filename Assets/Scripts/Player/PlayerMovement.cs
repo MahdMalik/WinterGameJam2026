@@ -39,10 +39,12 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         OpeningDoor = false;
         //Interaction. Checks interact hitbox in front of player. Then activates functions based on what is there.
-        if(Input.GetKeyDown(KeyCode.Z)) {
-            if (interactHitbox.IsTouchingLayers(LayerMask.GetMask("Door"))) {
-                OpeningDoor = true;
-            } else  if (canAct) {
+        if(Input.GetKeyDown(KeyCode.X) && interactHitbox.IsTouchingLayers(LayerMask.GetMask("Door"))) 
+        {
+            OpeningDoor = true;
+        }
+        else if (canAct && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.F))) 
+        {
             canAct = false;
             canTurnInteract = false;
             if (PlayerVars.PlayerFacing == 1) {
@@ -56,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
             }
             slashAnim.SetTrigger("Slashing");
             StartCoroutine(WaitToAct());
-        }
         }
 
         //Check if walking
