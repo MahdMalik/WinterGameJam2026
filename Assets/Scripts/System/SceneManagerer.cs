@@ -14,6 +14,10 @@ public class SceneManagerer : MonoBehaviour
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
+        Initializer.RT.Release();
+        Initializer.RT.height = 1920;
+        Initializer.RT.width = 1080;
+        Initializer.RT.Create();
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -27,7 +31,6 @@ public class SceneManagerer : MonoBehaviour
         }
         MusicManagement = GameObject.Find("MusicManager");
         StartCoroutine(FadeInMusic());
-        
     }
     
     IEnumerator FadeInMusic() {
@@ -50,9 +53,13 @@ public class SceneManagerer : MonoBehaviour
     private IEnumerator GoToNextScene() {
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
-        for (int i = 1; i < 51; i++) {
+        for (int i = 1; i < 41; i++) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.03f);
+        }
+        for (int i = 41; i < 71; i++) {
+            AdjustRenderTextureSize((i * i), (i * i));
+            yield return new WaitForSeconds(0.01f);
         }
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
