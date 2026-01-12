@@ -14,6 +14,10 @@ public class SceneManagerer : MonoBehaviour
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
+        Initializer.RT.Release();
+        Initializer.RT.height = 1920;
+        Initializer.RT.width = 1080;
+        Initializer.RT.Create();
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -27,8 +31,6 @@ public class SceneManagerer : MonoBehaviour
         }
         MusicManagement = GameObject.Find("MusicManager");
         StartCoroutine(FadeInMusic());
-        Initializer.RT.height = 1920;
-        Initializer.RT.width = 1080;
     }
     
     IEnumerator FadeInMusic() {
