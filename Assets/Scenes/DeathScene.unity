@@ -572,26 +572,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8834949230981877803, guid: b28bd1c4deb8e6a4ea816211632556db, type: 3}
-      propertyPath: musicSounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834949230981877803, guid: b28bd1c4deb8e6a4ea816211632556db, type: 3}
-      propertyPath: musicSounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0e2a071d558a9b846aa079b5ecd0bf9b, type: 3}
-    - target: {fileID: 8834949230981877803, guid: b28bd1c4deb8e6a4ea816211632556db, type: 3}
-      propertyPath: musicSounds.Array.data[1].name
-      value: Main
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834949230981877803, guid: b28bd1c4deb8e6a4ea816211632556db, type: 3}
-      propertyPath: musicSounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1aa1a0911f7e01a46a67864f31d8f21c, type: 3}
-    - target: {fileID: 8834949230981877803, guid: b28bd1c4deb8e6a4ea816211632556db, type: 3}
-      propertyPath: musicSounds.Array.data[2].name
-      value: Death
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

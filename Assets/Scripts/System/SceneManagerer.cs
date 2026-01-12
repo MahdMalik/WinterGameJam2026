@@ -47,6 +47,15 @@ public class SceneManagerer : MonoBehaviour
         currentVolume = volume;
         volumeChanging = false;
     }
+    IEnumerator FadeOutMusic() {
+        volumeChanging = true;
+        for (int i = 0; i < 50; i++) {
+            currentVolume -= volume/50.0f;
+            Debug.Log(currentVolume);
+            yield return new WaitForSeconds(0.045f);
+        }
+        currentVolume = 0.0f;
+    }
 
 
     public void Next() {
@@ -58,6 +67,7 @@ public class SceneManagerer : MonoBehaviour
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
         Initializer.PixelCamera.Render();
+        StartCoroutine(FadeOutMusic());
         for (int i = 1; i < 41; i++) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
@@ -71,7 +81,7 @@ public class SceneManagerer : MonoBehaviour
         } else {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        
+        StartCoroutine(FadeInMusic());
         for (int i = 27; i > 7; i--) {
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);

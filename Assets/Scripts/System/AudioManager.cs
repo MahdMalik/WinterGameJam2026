@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
             PlayMusic("Title");
         } else if (SceneManager.GetActiveScene().buildIndex == 1) {
             PlayMusic("Main");
+            Debug.Log("aaaa");
         } else {
             PlayMusic("Death");
         }
