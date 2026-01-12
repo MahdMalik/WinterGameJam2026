@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +51,7 @@ public class ItemUI : MonoBehaviour
                 inventory[i] = theItem;
                 slotObjects[i].GetComponent<Image>().sprite = inventory[i].image;
                 slotObjects[i].GetComponent<Image>().enabled = true;
+                numSlotsFilled++;
                 break;
             }
         }
@@ -61,8 +63,9 @@ public class ItemUI : MonoBehaviour
     }
 
     // make it return an int so if there was an out of bounds issue, it'll return the corrected index to PlayerInventory
-    public int SetItem(int index)
+    public void SetSelectedItem(int index)
     {
+        
         // assume we should wrap it around if we got an out of bounds number
         if(index >= numItemsInInventory)
         {
@@ -79,7 +82,29 @@ public class ItemUI : MonoBehaviour
         selectedSlot = index;
         // now change the current one to the selected slot image
         slotObjects[selectedSlot].parent.GetComponent<Image>().sprite = SelectedSlotImage;
+    }
 
-        return selectedSlot;
+    public void IncrementSelectedItem()
+    {
+        SetSelectedItem(selectedSlot + 1);
+    }
+
+    public void DecrementSelectedItem()
+    {
+        SetSelectedItem(selectedSlot - 1);
+    }
+
+    public Item RemoveItem()
+    {
+        Item removedItem = inventory[selectedSlot];
+        if(removedItem == null)
+        {
+            return null;
+        }
+        numSlotsFilled--;
+        inventory[selectedSlot] = null;
+        slotObjects[selectedSlot].GetComponent<Image>().enabled = false;
+
+        return removedItem;
     }
 }

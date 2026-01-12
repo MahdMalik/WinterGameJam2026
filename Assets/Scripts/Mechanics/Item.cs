@@ -57,4 +57,14 @@ public abstract class Item : MonoBehaviour
             // Debug.Log("no no");
         }
     }
+
+    public void DropItem(Vector2 inputPos)
+    {
+        worldPos = inputPos;
+        transform.position = new Vector3(worldPos[0], worldPos[1], 3.8f);
+
+        inInventory = false;
+        spriteRenderer.enabled = true;
+    }
+
 }
