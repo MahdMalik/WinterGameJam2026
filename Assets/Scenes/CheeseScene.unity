@@ -26200,11 +26200,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1912858129}
     - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: slashAnim
       value: 
       objectReference: {fileID: 1061256499}
     - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: theItemUi
+      value: 
+      objectReference: {fileID: 676440647}
+    - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: activationTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: swordSlashClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 0e95dcd2b7ff3b04f8bc38ef3a54e371, type: 2}
+    - target: {fileID: 7987226829402515508, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: theInventoryManager
       value: 
       objectReference: {fileID: 676440647}
     m_RemovedComponents: []
@@ -70541,10 +70557,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1912858127}
   - component: {fileID: 1912858126}
+  - component: {fileID: 1912858133}
   - component: {fileID: 1912858129}
   - component: {fileID: 1912858128}
   - component: {fileID: 1912858131}
-  - component: {fileID: 1912858133}
   - component: {fileID: 1912858132}
   m_Layer: 6
   m_Name: Player
@@ -70671,7 +70687,6 @@ MonoBehaviour:
   interactHitbox: {fileID: 83666244}
   PlayerSpeed: 200
   objectUseSpeed: 1
-  canAct: 1
   PlayerSprite: {fileID: 1912858126}
   playerAnim: {fileID: 1912858131}
 --- !u!95 &1912858131
@@ -70742,7 +70757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d263877b44bf7d4da6b5d5871896808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theItemUi: {fileID: 676440647}
+  theInventoryManager: {fileID: 676440647}
 --- !u!1 &2051079439
 GameObject:
   m_ObjectHideFlags: 0
