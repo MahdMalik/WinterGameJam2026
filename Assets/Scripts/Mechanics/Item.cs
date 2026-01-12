@@ -26,10 +26,22 @@ public abstract class Item : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        ItemUI.itemsRemoved += ResetItem;
+        ResetItem();
+    }
+
+    public void ResetItem()
+    {
         // Debug.Log("So this parent runs");
         transform.position = new Vector3(originalWorldPos[0], originalWorldPos[1], 3.8f);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = true;
         spriteRenderer.sprite = image;
+
+        if(name == "Lightsaber")
+        {
+            ItemTouched();
+        }
     }
 
     // Update is called once per frame

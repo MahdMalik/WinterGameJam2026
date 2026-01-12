@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,6 +19,8 @@ public class ItemUI : MonoBehaviour
 
     public Sprite UnselectedSlotImage;
     public Sprite SelectedSlotImage;
+
+    public static event Action itemsRemoved;
     
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +37,8 @@ public class ItemUI : MonoBehaviour
             slotObjects[i] = transform.Find($"Slot{i + 1}").GetChild(0);
             slotObjects[i].GetComponent<Image>().enabled = false;
         }
+
+        PlayerMovement.ResetGame += ResetInventory;
     }
 
     // Update is called once per frcame
@@ -107,4 +112,21 @@ public class ItemUI : MonoBehaviour
 
         return removedItem;
     }
+
+    private void ResetInventory()
+    {
+        for(int i = 0; i < numItemsInInventory; i++)
+        {
+            Item removedItem = RemoveItem();
+            selectedSlot++;
+            if(selectedSlot == numItemsInInventory)
+            {
+                selectedSlot = 0;
+            }
+        }
+        Debug.Log($"FINAL INDEX: {selectedSlot}");
+
+        itemsRemoved.Invoke();
+    }
+
 }
