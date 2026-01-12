@@ -66,7 +66,12 @@ public class SceneManagerer : MonoBehaviour
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
         }
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == 2) {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
+        } else {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
         for (int i = 27; i > 7; i--) {
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
@@ -102,5 +107,8 @@ public class SceneManagerer : MonoBehaviour
         }
         MusicManagement = GameObject.Find("MusicManager");
         MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Next();
+        }
     }
 }

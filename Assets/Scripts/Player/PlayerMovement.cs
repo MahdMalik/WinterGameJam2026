@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float objectUseSpeed;
     [SerializeField] private SpriteRenderer PlayerSprite;
     [SerializeField] Animator playerAnim;
+    [SerializeField] GameObject SceneManagement = null;
 
     public static Action ResetGame;
 
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // there'd be a game over screen)
     void Start()
     {
+        SceneManagement = GameObject.Find("SceneManager");
         Battery.OnPlayerDied += ResetPlayer;
     }
 
@@ -91,11 +93,7 @@ public class PlayerMovement : MonoBehaviour
     // resets the player when a new run starts
     void ResetPlayer()
     {
-        transform.position = Vector3.zero;
-        rb.velocity = Vector2.zero;
-
-        // now emit the fat that the game is resetting
-        ResetGame.Invoke();
+        SceneManagement.GetComponent<SceneManagerer>().Next();
     }
 
 }
