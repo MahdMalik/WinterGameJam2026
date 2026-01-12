@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y - 1.0f, Player.transform.position.z);
         } else {
             PlayerSprite.sprite = Left;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x - 1.0f, Player.transform.position.y, Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(Player.transform.position.x - 0.3f, Player.transform.position.y, Player.transform.position.z);
         }
     }
 
