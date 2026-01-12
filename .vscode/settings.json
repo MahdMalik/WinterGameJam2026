@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "WinterGameJam.sln"
+    "dotnet.defaultSolution": "WinterGameJam2026.sln"
 }
