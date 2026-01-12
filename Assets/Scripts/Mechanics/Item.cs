@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    public PlayerMovement player;
+    
     [SerializeField]
     protected string itemName;
     [SerializeField]
@@ -15,21 +17,30 @@ public abstract class Item : MonoBehaviour
     public Sprite image;
 
     [SerializeField]
-    private float cooldown;
+    protected float cooldown;
 
-    private SpriteRenderer spriteRenderer;
+    protected bool inCooldown;
+    
+    [SerializeField]
+    protected float activationTime;
+    protected bool activated;
+
+    protected SpriteRenderer spriteRenderer;
 
     public static event Action<Item> PlayerGotItem;
 
-    public ItemUI theItemUi;
+    public InventoryManager theInventoryManager;
+    protected float startTime;
     
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        ItemUI.itemsRemoved += ResetItem;
+        // want to make sure when the item is removed, we call its function FOR ALL items
+        InventoryManager.itemsRemoved += ResetItem;
         ResetItem();
     }
 
+    // function to reset the item to its original position out of the user's hands
     public void ResetItem()
     {
         // Debug.Log("So this parent runs");
@@ -37,7 +48,10 @@ public abstract class Item : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = image;
+        inCooldown = false;
+        activated = false;
 
+        // for lightsaber, its already in your inventory, so we do this accordingly
         if(name == "Lightsaber")
         {
             ItemTouched();
@@ -47,18 +61,40 @@ public abstract class Item : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        // if we've activated it and its activation ran out, go into cooldown mode. We say that player can't turn
+        // until its down for cases like a sword slash not turning with the player
+        if(activated && Time.time - startTime > activationTime)
+        {
+            inCooldown = true;
+            activated = false;
+            startTime = Time.time;
+            PlayerVars.canTurnInteract = true;
+        }
+        // when the cooldown is over, we say the item can be used again
+        else if (inCooldown && Time.time - startTime > cooldown)
+        {
+            inCooldown = false;
+        }
     }
 
-    protected virtual void Activate()
+    // this activates the item in question
+    public virtual void Activate()
     {
-        
+        activated = true;
+        // starts timer too
+        startTime = Time.time;
+        PlayerVars.canTurnInteract = false;
     }
 
+
+    // rutn this when the item is touched
     protected void ItemTouched()
     {
-        if(!theItemUi.IsInventoryFull())
+        // make sure the inventory aint' full already
+        if(!theInventoryManager.IsInventoryFull())
         {
+            // add it to inventory as so
+            
             // Debug.Log("GRAHH");
             inInventory = true;
             spriteRenderer.enabled = false;
@@ -70,16 +106,21 @@ public abstract class Item : MonoBehaviour
         }
     }
 
+    // drops the item a bit in front of the player
     public void DropItem(Vector2 inputPos)
     {
+        // sets position to input
         transform.position = new Vector3(inputPos[0], inputPos[1], 3.8f);
 
+        //actually removes it from inventory
         inInventory = false;
         spriteRenderer.enabled = true;
     }
 
+    // when the item is touched by the player
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // make sure the player touched it and that it isn't already in their inventory
         if (other.gameObject.name != "Player" || inInventory)
         {
             Debug.Log($"Fail, actual name was {other.gameObject.name}");
@@ -88,7 +129,18 @@ public abstract class Item : MonoBehaviour
 
         Debug.Log("Player picked up item");
 
+        // call the function to add it to inventory
         ItemTouched();
     }
 
+    //getter functions
+    public bool getCooldown()
+    {
+        return inCooldown;
+    }
+
+    public bool getActivated()
+    {
+        return inCooldown;
+    }
 }
