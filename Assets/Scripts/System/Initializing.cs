@@ -12,4 +12,12 @@ public class Initializing : MonoBehaviour {
         Initializer.PixelatedPanel = PixelatedPanelINIT;
         Initializer.PixelCamera = PixelCameraINIT;
     }
+    
+
+    public void Initialization() {
+        Initializer.RT = RTINIT;
+        Initializer.PixelatedPanel = PixelatedPanelINIT;
+        Initializer.PixelCamera = PixelCameraINIT;
+    }
+    
 }

@@ -26038,17 +26038,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1940725829977394716, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8261336290712036387, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
       propertyPath: m_Name
       value: SceneManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8915215692761386677, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70518,10 +70510,6 @@ PrefabInstance:
     - target: {fileID: 2017852444975111826, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_Name
       value: UICanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769014098845009294, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
-      propertyPath: numSecondsFromMax
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

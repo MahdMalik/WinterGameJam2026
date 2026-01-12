@@ -11,12 +11,13 @@ public class SceneManagerer : MonoBehaviour
     public bool volumeChanging = true;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
+    [SerializeField] GameObject Initial;
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
         Initializer.RT.Release();
-        Initializer.RT.height = 1920;
-        Initializer.RT.width = 1080;
+        Initializer.RT.width = 1920;
+        Initializer.RT.height = 1080;
         Initializer.RT.Create();
         if (instance == null) {
             instance = this;
@@ -30,6 +31,9 @@ public class SceneManagerer : MonoBehaviour
             volume = 0.3f;
         }
         MusicManagement = GameObject.Find("MusicManager");
+        Initializer.PixelatedPanel.SetActive(false);
+        Initializer.PixelCamera.gameObject.SetActive(false);
+        Initializer.PixelCamera.Render();
         StartCoroutine(FadeInMusic());
     }
     
@@ -38,7 +42,7 @@ public class SceneManagerer : MonoBehaviour
         currentVolume = 0.0f;
         for (int i = 0; i < 50; i++) {
             currentVolume += volume/50.0f;
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.045f);
         }
         currentVolume = volume;
         volumeChanging = false;
@@ -53,15 +57,27 @@ public class SceneManagerer : MonoBehaviour
     private IEnumerator GoToNextScene() {
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
+        Initializer.PixelCamera.Render();
         for (int i = 1; i < 41; i++) {
             AdjustRenderTextureSize(i, i);
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.045f);
         }
         for (int i = 7; i < 27; i++) {
             AdjustRenderTextureSize((i * i), (i * i));
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.022f);
         }
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        for (int i = 27; i > 7; i--) {
+            AdjustRenderTextureSize((i * i), (i * i));
+            yield return new WaitForSeconds(0.022f);
+        }
+        for (int i = 41; i > 0; i--) {
+            AdjustRenderTextureSize(i, i);
+            yield return new WaitForSeconds(0.045f);
+        }
+        Initial.GetComponent<Initializing>().Initialization();
+        Initializer.PixelatedPanel.SetActive(false);
+        Initializer.PixelCamera.gameObject.SetActive(false);
     }
 
     private void AdjustRenderTextureSize(int width, int height) {
