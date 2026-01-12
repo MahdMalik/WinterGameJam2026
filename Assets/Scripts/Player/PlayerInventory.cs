@@ -50,7 +50,7 @@ public class PlayerInventory : MonoBehaviour
                 float xOffset = PlayerVars.PlayerFacing == 2 ? 1 : PlayerVars.PlayerFacing == 4 ? - 1 : 0; 
                 float yOffset = PlayerVars.PlayerFacing == 1 ? 1 : PlayerVars.PlayerFacing == 3 ? -1 : 0;
 
-                Vector2 thrownPosition = new Vector2(transform.position.x + xOffset, transform.position.y + yOffset);
+                Vector2 thrownPosition = new Vector2(transform.position.x + xOffset * 1.5f, transform.position.y + yOffset * 1.5f);
 
                 droppedItem.DropItem(thrownPosition);
             }

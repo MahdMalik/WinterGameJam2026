@@ -10,7 +10,7 @@ public class Lightsaber : Item
     {
         // Debug.Log("So this cihld runs");
         base.Start();
-        base.ItemTouched();
+        ItemTouched();
     }
 
     // Update is called once per frame
