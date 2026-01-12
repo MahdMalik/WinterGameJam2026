@@ -65,16 +65,16 @@ public class PlayerMovement : MonoBehaviour
         }
         if(PlayerVars.PlayerFacing == 1) {
             PlayerSprite.sprite = Up;
-            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         } else if(PlayerVars.PlayerFacing == 2) {
             PlayerSprite.sprite = Right;
-            interactSquare.transform.position = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x + 1.0f, transform.position.y + 0.5f, transform.position.z);
         } else if(PlayerVars.PlayerFacing == 3) {
             PlayerSprite.sprite = Down;
-            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         } else {
             PlayerSprite.sprite = Left;
-            interactSquare.transform.position = new Vector3(transform.position.x - 1.0f, transform.position.y, transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x - 1.0f, transform.position.y + 0.5f, transform.position.z);
         }
     }
 
