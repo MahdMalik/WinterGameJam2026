@@ -48,5 +48,10 @@ public class PlayerInventory : MonoBehaviour
         {
             SwapSelectedSlot(3);
         }
+
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            
+        }
     }
 }

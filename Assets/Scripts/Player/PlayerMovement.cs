@@ -13,9 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject interactSquare;
     [SerializeField] private BoxCollider2D interactHitbox;
-    [SerializeField] private GameObject Player;
     [SerializeField] private float PlayerSpeed;
-    [SerializeField] private int PlayerFacing = 3;
     [SerializeField] private SpriteRenderer PlayerSprite;
     [SerializeField] Animator playerAnim;
 
@@ -49,41 +47,43 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("Walking", true);
         //Facing Logic
         if(rb.velocity.x == 0 && rb.velocity.y > 0) {
-            PlayerFacing = 1;
+            PlayerVars.PlayerFacing = 1;
             playerAnim.SetInteger("WalkingDirection", 1);
         }//Up
         if (rb.velocity.x > 0) {
-            PlayerFacing = 2;
+            PlayerVars.PlayerFacing = 2;
             playerAnim.SetInteger("WalkingDirection", 2);
         }//Right
         if (rb.velocity.x == 0 && rb.velocity.y < 0) {
-            PlayerFacing = 3;
+            PlayerVars.PlayerFacing = 3;
             playerAnim.SetInteger("WalkingDirection", 3);
         }//Down
         if (rb.velocity.x < 0) {
-            PlayerFacing = 4;
+            PlayerVars.PlayerFacing = 4;
             playerAnim.SetInteger("WalkingDirection", 4);
         }//Left
         }
-        if(PlayerFacing == 1) {
+        if(PlayerVars.PlayerFacing == 1) {
             PlayerSprite.sprite = Up;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1.0f, Player.transform.position.z);
-        } else if(PlayerFacing == 2) {
+            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+        } else if(PlayerVars.PlayerFacing == 2) {
             PlayerSprite.sprite = Right;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x + 1.0f, Player.transform.position.y, Player.transform.position.z);
-        } else if(PlayerFacing == 3) {
+            interactSquare.transform.position = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
+        } else if(PlayerVars.PlayerFacing == 3) {
             PlayerSprite.sprite = Down;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y - 1.0f, Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
         } else {
             PlayerSprite.sprite = Left;
-            interactSquare.transform.position = new Vector3(Player.transform.position.x - 1.0f, Player.transform.position.y, Player.transform.position.z);
+            interactSquare.transform.position = new Vector3(transform.position.x - 1.0f, transform.position.y, transform.position.z);
         }
     }
 
     void ResetPlayer()
     {
-        Player.transform.position = Vector3.zero;
+        transform.position = Vector3.zero;
         rb.velocity = Vector2.zero;
         ResetGame.Invoke();
     }
+
+
 }
