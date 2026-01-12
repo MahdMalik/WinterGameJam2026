@@ -158,53 +158,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &677668268
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 677668270}
-  - component: {fileID: 677668269}
-  m_Layer: 0
-  m_Name: InitializeVariables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &677668269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677668268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6876cd001958685408fa1f55049668dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RTINIT: {fileID: 8400000, guid: daf32ff6aaec00b4ab2ff6b4624cbeaa, type: 2}
-  PixelatedPanelINIT: {fileID: 1989093001}
-  PixelCameraINIT: {fileID: 851500177}
---- !u!4 &677668270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677668268}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8542814, y: 5.6129336, z: -0.049617343}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735385467
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,11 +308,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838607400}
   m_CullTransparentMesh: 1
---- !u!20 &851500177 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1940725829977394716, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-  m_PrefabInstance: {fileID: 3707880209268523585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003706165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,11 +1062,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1989093001 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1402153221856272238, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-  m_PrefabInstance: {fileID: 3707880209268523585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3707880209268523585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1242,4 +1185,3 @@ SceneRoots:
   - {fileID: 1939566000}
   - {fileID: 3707880209268523585}
   - {fileID: 7762992792486633531}
-  - {fileID: 677668270}

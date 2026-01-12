@@ -7,7 +7,7 @@ public class Initializing : MonoBehaviour {
     [SerializeField] GameObject PixelatedPanelINIT;
     [SerializeField] Camera PixelCameraINIT;
 
-    void Start() {
+    void Awake() {
         Initializer.RT = RTINIT;
         Initializer.PixelatedPanel = PixelatedPanelINIT;
         Initializer.PixelCamera = PixelCameraINIT;

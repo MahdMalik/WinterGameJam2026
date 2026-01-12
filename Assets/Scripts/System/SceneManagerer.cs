@@ -10,7 +10,7 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging = true;
     public float currentVolume = 0.0f;
-    [SerializeField] GameObject MusicManagement;
+    [SerializeField] GameObject MusicManagement = null;
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
@@ -57,9 +57,9 @@ public class SceneManagerer : MonoBehaviour
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.03f);
         }
-        for (int i = 41; i < 71; i++) {
+        for (int i = 7; i < 27; i++) {
             AdjustRenderTextureSize((i * i), (i * i));
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.015f);
         }
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -84,6 +84,7 @@ public class SceneManagerer : MonoBehaviour
         if (!volumeChanging) {
             currentVolume = volume;
         }
+        MusicManagement = GameObject.Find("MusicManager");
         MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
     }
 }
