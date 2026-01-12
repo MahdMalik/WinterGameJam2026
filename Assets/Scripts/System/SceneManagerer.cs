@@ -43,8 +43,28 @@ public class SceneManagerer : MonoBehaviour
 
 
     public void Next() {
+        StartCoroutine(GoToNextScene());
+    }
+
+
+    private IEnumerator GoToNextScene() {
+        Initializer.PixelatedPanel.SetActive(true);
+        Initializer.PixelCamera.gameObject.SetActive(true);
+        for (int i = 1; i < 51; i++) {
+            AdjustRenderTextureSize(i, i);
+            yield return new WaitForSeconds(0.03f);
+        }
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    private void AdjustRenderTextureSize(int width, int height) {
+        Initializer.RT.Release();
+        Initializer.RT.width = (int)(1920/width);
+        Initializer.RT.height = (int)(1080/height);
+        Initializer.RT.Create();
+    }
+
+
 
     public void volumeSet(System.Single sliderValue) {
         if (!volumeChanging) {
