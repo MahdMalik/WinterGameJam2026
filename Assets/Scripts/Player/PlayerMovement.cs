@@ -96,4 +96,6 @@ public class PlayerMovement : MonoBehaviour
         SceneManagement.GetComponent<SceneManagerer>().Next();
     }
 
+    
+
 }

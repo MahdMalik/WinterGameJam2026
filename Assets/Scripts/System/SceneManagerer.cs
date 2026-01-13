@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.SceneManagement;
 public class SceneManagerer : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class SceneManagerer : MonoBehaviour
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
     [SerializeField] GameObject Initial;
+
+    public float SetSFXVolume;
+    public Sound[] SFXSounds;
+    [SerializeField] private AudioSource SFXSource;
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
@@ -44,6 +49,7 @@ public class SceneManagerer : MonoBehaviour
         currentVolume = 0.0f;
         for (int i = 0; i < 50; i++) {
             currentVolume += volume/50.0f;
+            Initializer.SFXVolume += SetSFXVolume/50.0f;
             yield return new WaitForSeconds(0.045f);
         }
         currentVolume = volume;
@@ -53,6 +59,7 @@ public class SceneManagerer : MonoBehaviour
         volumeChanging = true;
         for (int i = 0; i < 50; i++) {
             currentVolume -= volume/50.0f;
+            Initializer.SFXVolume -= SetSFXVolume/50.0f;
             Debug.Log(currentVolume);
             yield return new WaitForSeconds(0.045f);
         }
@@ -110,17 +117,21 @@ public class SceneManagerer : MonoBehaviour
     public void volumeSet(System.Single sliderValue) {
         if (!volumeChanging) {
             volume = sliderValue;
+            PlaySFX("Click");
         }
     }
 
     public void SFXvolumeSet(System.Single sliderValue) {
         if (!volumeChanging) {
-            Initializer.SFXVolume = sliderValue;
+            SetSFXVolume = sliderValue;
+            Initializer.SFXVolume = SetSFXVolume;
+            PlaySFX("Click");
         }
     }
 
     void Update()
     {
+        SFXSource.volume = Initializer.SFXVolume;
         if (!volumeChanging) {
             currentVolume = volume;
         }
@@ -131,6 +142,16 @@ public class SceneManagerer : MonoBehaviour
         }
         if (PlayerObject != null) {
             Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        }
+    }
+
+    public void PlaySFX(string name) {
+        Sound s = Array.Find(SFXSounds, x => x.name == name);
+        if(s == null) {
+            Debug.Log("No Sounds");
+        } else {
+            SFXSource.clip = s.clip;
+            SFXSource.Play();
         }
     }
 }
