@@ -113,6 +113,12 @@ public class SceneManagerer : MonoBehaviour
         }
     }
 
+    public void SFXvolumeSet(System.Single sliderValue) {
+        if (!volumeChanging) {
+            Initializer.SFXVolume = sliderValue;
+        }
+    }
+
     void Update()
     {
         if (!volumeChanging) {

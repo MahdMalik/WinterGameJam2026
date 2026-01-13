@@ -7,4 +7,7 @@ public static class Initializer
     public static RenderTexture RT;
     public static GameObject PixelatedPanel;
     public static Camera PixelCamera;
+    public static float batteryPower;
+    public static float SFXVolume;
+    public static bool worldFrozen;
 }
