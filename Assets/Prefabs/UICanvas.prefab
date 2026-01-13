@@ -302,7 +302,7 @@ MonoBehaviour:
   batterySlider: {fileID: 785033271676293950}
   batteryText: {fileID: 5232340212870147574}
   maxBattery: 100
-  numSecondsFromMax: 7
+  numSecondsFromMax: 25
 --- !u!1 &2017852444975111826
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &4418168938436188461
 MonoBehaviour:

@@ -11,6 +11,7 @@ public class SceneManagerer : MonoBehaviour
     public bool volumeChanging = true;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
+    [SerializeField] GameObject PlayerObject = null;
     [SerializeField] GameObject Initial;
 
     //This checks if another scene manager exists here and deletes it if so.
@@ -31,6 +32,7 @@ public class SceneManagerer : MonoBehaviour
             volume = 0.3f;
         }
         MusicManagement = GameObject.Find("MusicManager");
+        PlayerObject = GameObject.Find("Player");
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
         Initializer.PixelCamera.Render();
@@ -65,8 +67,8 @@ public class SceneManagerer : MonoBehaviour
 
     private IEnumerator GoToNextScene() {
         Initializer.PixelatedPanel.SetActive(true);
-        Initializer.PixelCamera.gameObject.SetActive(true);
         Initializer.PixelCamera.Render();
+        Initializer.PixelCamera.gameObject.SetActive(true);
         StartCoroutine(FadeOutMusic());
         for (int i = 1; i < 41; i++) {
             AdjustRenderTextureSize(i, i);
@@ -82,6 +84,7 @@ public class SceneManagerer : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
         StartCoroutine(FadeInMusic());
+        PlayerObject = GameObject.Find("Player");
         for (int i = 27; i > 7; i--) {
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
@@ -119,6 +122,9 @@ public class SceneManagerer : MonoBehaviour
         MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
         if (Input.GetKeyDown(KeyCode.P)) {
             Next();
+        }
+        if (PlayerObject != null) {
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
         }
     }
 }
