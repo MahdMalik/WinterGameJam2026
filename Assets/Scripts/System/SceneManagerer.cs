@@ -96,14 +96,23 @@ public class SceneManagerer : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
         StartCoroutine(FadeInMusic());
-        Initial.GetComponent<Initializing>().Initialization();
-        PlayerObject = GameObject.Find("Player");
+        for (int k = 1; k == 1;) {
+            Initial.GetComponent<Initializing>().Initialization();
+            PlayerObject = GameObject.Find("Player");
+            yield return new WaitForSeconds(0.05f);
+            Debug.Log("Trying to Find.");
+            if ((Initializer.PixelCamera != null) && (PlayerObject != null) && SceneManager.GetActiveScene().buildIndex == 1) {
+                k = 10;
+            }
+        }
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
         Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
         for (int i = 27; i > 7; i--) {
+            Initial.GetComponent<Initializing>().Initialization();
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
         }
         for (int i = 41; i > 0; i--) {
             AdjustRenderTextureSize(i, i);

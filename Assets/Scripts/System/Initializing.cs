@@ -18,6 +18,7 @@ public class Initializing : MonoBehaviour {
         Initializer.RT = RTINIT;
         Initializer.PixelatedPanel = PixelatedPanelINIT;
         Initializer.PixelCamera = PixelCameraINIT;
+        Debug.Log(Initializer.PixelCamera);
     }
     
 }

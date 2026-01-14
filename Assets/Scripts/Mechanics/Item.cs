@@ -45,7 +45,7 @@ public abstract class Item : MonoBehaviour
     // function to reset the item to its original position out of the user's hands
     public void ResetItem()
     {
-        Debug.Log("This should be running");
+        //Debug.Log("This should be running");
         transform.position = new Vector3(originalWorldPos[0], originalWorldPos[1], 3.8f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true;
