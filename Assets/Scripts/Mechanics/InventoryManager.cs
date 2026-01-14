@@ -28,8 +28,6 @@ public class InventoryManager : MonoBehaviour
         // Debug.Log("I think awake is a lie");
         inventory = new Item[numItemsInInventory];
         numSlotsFilled = 0;
-        // set action that when we get an item we run this function
-        Item.PlayerGotItem += OnItemGet;
 
         // this gets a slot of UI objects we'll be modifying more than once
         slotObjects = new Transform[numItemsInInventory];
@@ -38,9 +36,6 @@ public class InventoryManager : MonoBehaviour
             slotObjects[i] = transform.Find($"Slot{i + 1}").GetChild(0);
             slotObjects[i].GetComponent<Image>().enabled = false;
         }
-
-        // make sure when the game's reset we reset inventory too
-        PlayerMovement.ResetGame += ResetInventory;
     }
 
     // Update is called once per frcame
@@ -51,7 +46,7 @@ public class InventoryManager : MonoBehaviour
 
     //run this when we get an item. We know already that the inventory isn't full when we run this funciton, so we
     // dont' have to worry about that
-    void OnItemGet(Item theItem)
+   public void AddItem(Item theItem)
     {
         for(int i = 0; i < inventory.Length; i++)
         {
@@ -109,9 +104,9 @@ public class InventoryManager : MonoBehaviour
     }
 
     // removes the item from inventory
-    public Item RemoveItem()
+    public Item RemoveItem(int index)
     {
-        Item removedItem = inventory[selectedSlot];
+        Item removedItem = inventory[index];
         // they may have tried to remove something in an empty slot, be wary of that
         if(removedItem == null)
         {
@@ -119,10 +114,16 @@ public class InventoryManager : MonoBehaviour
         }
         // now actually remove the item
         numSlotsFilled--;
-        inventory[selectedSlot] = null;
-        slotObjects[selectedSlot].GetComponent<Image>().enabled = false;
+        inventory[index] = null;
+        slotObjects[index].GetComponent<Image>().enabled = false;
 
         return removedItem;
+    }
+
+    // by default if called without the index, we remove the current slot seelected
+    public Item RemoveItem()
+    {
+        return RemoveItem(selectedSlot);
     }
 
     // resets entire inventory, like on death

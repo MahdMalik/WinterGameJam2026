@@ -15,9 +15,6 @@ public class Battery : MonoBehaviour
     public static event Action OnPlayerDied;
 
     public int numSecondsFromMax;
-
-    private float currentBattery;
-
     private float decreasePerSec;
 
     private bool batteryOut;
@@ -25,8 +22,6 @@ public class Battery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //make sure that when the game is restarted, we obviously reset battery
-        PlayerMovement.ResetGame += ResetBattery;
         ResetBattery();
     }
 
@@ -66,5 +61,14 @@ public class Battery : MonoBehaviour
         // change UI accordingly
         batterySlider.transform.localScale = new Vector3(Initializer.batteryPower / maxBattery, batterySlider.transform.localScale.y, batterySlider.transform.localScale.z);
         batteryText.text = $"{Mathf.CeilToInt(Initializer.batteryPower / maxBattery * 100)}%";
+    }
+
+    public void RestoreBattery(float restoreAmount)
+    {
+        Initializer.batteryPower += restoreAmount;
+        if(Initializer.batteryPower > maxBattery)
+        {
+            Initializer.batteryPower = maxBattery;
+        }
     }
 }

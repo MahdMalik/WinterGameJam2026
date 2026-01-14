@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerAnim;
     [SerializeField] GameObject SceneManagement = null;
 
-    public static Action ResetGame;
-
     // make sure that when the battery dies out, we restart the game (for now; normally
     // there'd be a game over screen)
     void Start()
@@ -96,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
         SceneManagement.GetComponent<SceneManagerer>().Next();
     }
 
-    
-
+    void OnDestroy()
+    {
+        Battery.OnPlayerDied -= ResetPlayer;
+    }
 }

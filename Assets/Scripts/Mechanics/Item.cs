@@ -26,11 +26,13 @@ public abstract class Item : MonoBehaviour
     protected bool activated;
 
     protected SpriteRenderer spriteRenderer;
-
-    public static event Action<Item> PlayerGotItem;
-
     public InventoryManager theInventoryManager;
     protected float startTime;
+
+    [SerializeField]
+    protected bool oneTimeActivation;
+
+    protected bool usedUp;
     
     // Start is called before the first frame update
     protected virtual void Start()
@@ -43,13 +45,14 @@ public abstract class Item : MonoBehaviour
     // function to reset the item to its original position out of the user's hands
     public void ResetItem()
     {
-        // Debug.Log("So this parent runs");
+        Debug.Log("This should be running");
         transform.position = new Vector3(originalWorldPos[0], originalWorldPos[1], 3.8f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = image;
         inCooldown = false;
         activated = false;
+        usedUp = false;
 
         // for lightsaber, its already in your inventory, so we do this accordingly
         if(name == "Lightsaber")
@@ -61,29 +64,48 @@ public abstract class Item : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        // if we've activated it and its activation ran out, go into cooldown mode. We say that player can't turn
-        // until its down for cases like a sword slash not turning with the player
-        if(activated && Time.time - startTime > activationTime)
+        if(!oneTimeActivation)
         {
-            inCooldown = true;
-            activated = false;
-            startTime = Time.time;
-            PlayerVars.canTurnInteract = true;
+            // if we've activated it and its activation ran out, go into cooldown mode. We say that player can't turn
+            // until its down for cases like a sword slash not turning with the player
+            if(activated && Time.time - startTime > activationTime)
+            {
+                inCooldown = true;
+                activated = false;
+                startTime = Time.time;
+                PlayerVars.canTurnInteract = true;
+            }
+            // when the cooldown is over, we say the item can be used again
+            else if (inCooldown && Time.time - startTime > cooldown)
+            {
+                inCooldown = false;
+            }
         }
-        // when the cooldown is over, we say the item can be used again
-        else if (inCooldown && Time.time - startTime > cooldown)
-        {
-            inCooldown = false;
-        }
+    }
+
+    // kinda resets the item back to its initial place
+    void DestroyItem()
+    {
+        inInventory = false;
+        transform.position = new Vector3(originalWorldPos[0], originalWorldPos[1], 3.8f);
+        usedUp = true;
     }
 
     // this activates the item in question
     public virtual void Activate()
     {
-        activated = true;
-        // starts timer too
-        startTime = Time.time;
-        PlayerVars.canTurnInteract = false;
+        if(oneTimeActivation)
+        {
+            DestroyItem();
+            theInventoryManager.RemoveItem();
+        }
+        else
+        {
+            activated = true;
+            // starts timer too
+            startTime = Time.time;
+            PlayerVars.canTurnInteract = false;
+        }
     }
 
 
@@ -98,7 +120,7 @@ public abstract class Item : MonoBehaviour
             // Debug.Log("GRAHH");
             inInventory = true;
             spriteRenderer.enabled = false;
-            PlayerGotItem.Invoke(this);
+            theInventoryManager.AddItem(this);
         }
         else
         {
@@ -121,7 +143,7 @@ public abstract class Item : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // make sure the player touched it and that it isn't already in their inventory
-        if (other.gameObject.name != "Player" || inInventory)
+        if (other.gameObject.name != "Player" || inInventory || usedUp)
         {
             Debug.Log($"Fail, actual name was {other.gameObject.name}");
             return;
@@ -142,5 +164,10 @@ public abstract class Item : MonoBehaviour
     public bool getActivated()
     {
         return activated;
+    }
+
+    void OnDestroy()
+    {
+        InventoryManager.itemsRemoved -= ResetItem;
     }
 }
