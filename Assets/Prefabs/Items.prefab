@@ -191,7 +191,7 @@ MonoBehaviour:
   inInventory: 0
   image: {fileID: 21300000, guid: d65b3abb5b752bb47b12a197c138092f, type: 3}
   cooldown: 1
-  activationTime: 1
+  activationTime: 0.2
   theInventoryManager: {fileID: 0}
   slashAnim: {fileID: 3650998724353542475}
   swordSlashClip: {fileID: 7400000, guid: 0e95dcd2b7ff3b04f8bc38ef3a54e371, type: 2}

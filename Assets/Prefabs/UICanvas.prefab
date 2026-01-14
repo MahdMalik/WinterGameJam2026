@@ -302,7 +302,7 @@ MonoBehaviour:
   batterySlider: {fileID: 785033271676293950}
   batteryText: {fileID: 5232340212870147574}
   maxBattery: 100
-  numSecondsFromMax: 25
+  numSecondsFromMax: 18
 --- !u!1 &2017852444975111826
 GameObject:
   m_ObjectHideFlags: 0

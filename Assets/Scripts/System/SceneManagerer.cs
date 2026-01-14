@@ -21,10 +21,6 @@ public class SceneManagerer : MonoBehaviour
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
-        Initializer.RT.Release();
-        Initializer.RT.width = 1920;
-        Initializer.RT.height = 1080;
-        Initializer.RT.Create();
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -32,6 +28,10 @@ public class SceneManagerer : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Initializer.RT.Release();
+        Initializer.RT.width = 1920;
+        Initializer.RT.height = 1080;
+        Initializer.RT.Create();
 
         if (SceneManager.GetActiveScene().buildIndex == 0) {
             volume = 0.3f;
@@ -60,7 +60,6 @@ public class SceneManagerer : MonoBehaviour
         for (int i = 0; i < 50; i++) {
             currentVolume -= volume/50.0f;
             Initializer.SFXVolume -= SetSFXVolume/50.0f;
-            Debug.Log(currentVolume);
             yield return new WaitForSeconds(0.045f);
         }
         currentVolume = 0.0f;
@@ -73,6 +72,12 @@ public class SceneManagerer : MonoBehaviour
 
 
     private IEnumerator GoToNextScene() {
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
+            PlaySFX("Death");
+        } else {
+            PlaySFX("Click");
+        }
+        Initial.GetComponent<Initializing>().Initialization();
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.Render();
         Initializer.PixelCamera.gameObject.SetActive(true);
@@ -91,7 +96,11 @@ public class SceneManagerer : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
         StartCoroutine(FadeInMusic());
+        Initial.GetComponent<Initializing>().Initialization();
         PlayerObject = GameObject.Find("Player");
+        Initializer.PixelatedPanel.SetActive(true);
+        Initializer.PixelCamera.gameObject.SetActive(true);
+        Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
         for (int i = 27; i > 7; i--) {
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);

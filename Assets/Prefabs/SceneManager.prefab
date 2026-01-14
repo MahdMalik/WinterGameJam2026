@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3258949243539525886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ Transform:
   m_GameObject: {fileID: 1663409286211898095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -311.62097, y: -144.65071, z: -6.847615}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,10 +265,12 @@ MonoBehaviour:
   MusicManagement: {fileID: 0}
   PlayerObject: {fileID: 0}
   Initial: {fileID: 4720330016810318286}
-  SetSFXVolume: 0
+  SetSFXVolume: 0.3
   SFXSounds:
   - name: Click
     clip: {fileID: 8300000, guid: c02d6218c5d13254bb460d9467c2d940, type: 3}
+  - name: Death
+    clip: {fileID: 8300000, guid: e7201643b1d202f4c89845fa2f6be4cb, type: 3}
   SFXSource: {fileID: 8684182369397612830}
 --- !u!82 &8684182369397612830
 AudioSource:
