@@ -40,18 +40,18 @@ public class Door : MonoBehaviour
     DoorSprite.sprite = PartClosed;
     yield return new WaitForSeconds(time);
     DoorSprite.sprite = PartOpen;
-    doorHitbox.isTrigger = true;
     yield return new WaitForSeconds(time);
     DoorSprite.sprite = Open;
+    doorHitbox.isTrigger = true;
     yield return new WaitForSeconds(time);
     DoorOpen = 1;
  }
 
  private IEnumerator CloseTheDoor(float time) {
     DoorSprite.sprite = PartOpen;
+    doorHitbox.isTrigger = false;
     yield return new WaitForSeconds(time);
     DoorSprite.sprite = PartClosed;
-    doorHitbox.isTrigger = false;
     yield return new WaitForSeconds(time);
     DoorSprite.sprite = Closed;
     yield return new WaitForSeconds(time);
