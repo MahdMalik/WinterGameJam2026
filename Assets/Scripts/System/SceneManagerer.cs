@@ -15,7 +15,7 @@ public class SceneManagerer : MonoBehaviour
     [SerializeField] GameObject PlayerObject = null;
     [SerializeField] GameObject Initial;
 
-    public float SetSFXVolume;
+    public float SetSFXVolume = 0.3f;
     public Sound[] SFXSounds;
     [SerializeField] private AudioSource SFXSource;
 
