@@ -8,6 +8,7 @@ public class Lightsaber : Item
     // need these animation stuff to alter length to what we want to be
     [SerializeField] Animator slashAnim;
     public AnimationClip swordSlashClip;
+    [SerializeField] private float energyUse;
 
     private float originalClipTime;
 
@@ -50,5 +51,6 @@ public class Lightsaber : Item
         }
         slashAnim.SetTrigger("Slashing");        
         base.Activate();
+        Initializer.batteryPower -= energyUse;
     }
 }
