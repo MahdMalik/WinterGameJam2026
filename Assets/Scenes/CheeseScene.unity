@@ -8538,14 +8538,14 @@ PrefabInstance:
       propertyPath: theInventoryManager
       value: 
       objectReference: {fileID: 676440647}
-    - target: {fileID: 4146711376057429595, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.548
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146711376057429595, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.089
-      objectReference: {fileID: 0}
+    - target: {fileID: 3684791015166602484, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1912858129}
+    - target: {fileID: 3684791015166602484, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: theInventoryManager
+      value: 
+      objectReference: {fileID: 676440647}
     - target: {fileID: 6065291819171361244, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8594,6 +8594,10 @@ PrefabInstance:
       propertyPath: theInventoryManager
       value: 
       objectReference: {fileID: 676440647}
+    - target: {fileID: 8248184345430125173, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: m_Name
+      value: BatteryPickup2
+      objectReference: {fileID: 0}
     - target: {fileID: 8266548489226284397, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: player
       value: 
@@ -8603,17 +8607,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 378597920}
     - target: {fileID: 8266548489226284397, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: originalWorldPos.x
-      value: -9.548
-      objectReference: {fileID: 0}
-    - target: {fileID: 8266548489226284397, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: originalWorldPos.y
-      value: 7.089
-      objectReference: {fileID: 0}
-    - target: {fileID: 8266548489226284397, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: theInventoryManager
       value: 
       objectReference: {fileID: 676440647}
+    - target: {fileID: 8753990510376252936, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
