@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3258949243539525886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -271,7 +271,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c02d6218c5d13254bb460d9467c2d940, type: 3}
   - name: Death
     clip: {fileID: 8300000, guid: e7201643b1d202f4c89845fa2f6be4cb, type: 3}
+  - name: Step
+    clip: {fileID: 8300000, guid: bedfdaff8083a494ca1c7a6531a4b387, type: 3}
   SFXSource: {fileID: 8684182369397612830}
+  walkingSoundCooldown: 0
 --- !u!82 &8684182369397612830
 AudioSource:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class SceneManagerer : MonoBehaviour
     public float SetSFXVolume = 0.3f;
     public Sound[] SFXSounds;
     [SerializeField] private AudioSource SFXSource;
+    [SerializeField] private bool walkingSoundCooldown;
 
     //This checks if another scene manager exists here and deletes it if so.
     private void Awake() {
@@ -27,20 +28,22 @@ public class SceneManagerer : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
-
+        //This sets up the texture used for the screen transition.
         Initializer.RT.Release();
         Initializer.RT.width = 1920;
         Initializer.RT.height = 1080;
         Initializer.RT.Create();
-
+        //Sets volume to start at 30%.
         if (SceneManager.GetActiveScene().buildIndex == 0) {
             volume = 0.3f;
         }
+        //Finds the music manager and player. Sets the screen transition to off and fades in music.
         MusicManagement = GameObject.Find("MusicManager");
         PlayerObject = GameObject.Find("Player");
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
         Initializer.PixelCamera.Render();
+        Initializer.playerMoving = false;
         StartCoroutine(FadeInMusic());
     }
     
@@ -72,16 +75,20 @@ public class SceneManagerer : MonoBehaviour
 
 
     private IEnumerator GoToNextScene() {
+        Initializer.playerMoving = false;
+        Initializer.worldFrozen = true;
         if (SceneManager.GetActiveScene().buildIndex == 1) {
             PlaySFX("Death");
         } else {
             PlaySFX("Click");
         }
+        //Sets the screen transition on.
         Initial.GetComponent<Initializing>().Initialization();
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.Render();
         Initializer.PixelCamera.gameObject.SetActive(true);
         StartCoroutine(FadeOutMusic());
+        //Lowers screen resolution.
         for (int i = 1; i < 41; i++) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
@@ -90,12 +97,14 @@ public class SceneManagerer : MonoBehaviour
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
         }
+        //Sends you to the next scene.
         if (SceneManager.GetActiveScene().buildIndex == 2) {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
         } else {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
         StartCoroutine(FadeInMusic());
+        //Waits until the player is found before continuing.
         for (int k = 1; k == 1;) {
             Initial.GetComponent<Initializing>().Initialization();
             PlayerObject = GameObject.Find("Player");
@@ -105,6 +114,7 @@ public class SceneManagerer : MonoBehaviour
                 k = 10;
             }
         }
+        //Makes sure the transition camera is on and starts raising resolution again.
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
         Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
@@ -118,6 +128,7 @@ public class SceneManagerer : MonoBehaviour
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
         }
+        //Turns the transition off.
         Initial.GetComponent<Initializing>().Initialization();
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
@@ -149,20 +160,30 @@ public class SceneManagerer : MonoBehaviour
 
     void Update()
     {
+        //Used to set volume for the music and SFX. Has to be stored here so it carries across scenes.
         SFXSource.volume = Initializer.SFXVolume;
         if (!volumeChanging) {
             currentVolume = volume;
         }
         MusicManagement = GameObject.Find("MusicManager");
         MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
+        //If P is pressed, go to the next scene. Used instead of a button because buttons are stupid.
         if (Input.GetKeyDown(KeyCode.P)) {
             Next();
         }
+        //Moves the screen transition camera to the player at all times.
         if (PlayerObject != null) {
             Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
         }
+        //Plays the Walking SFX
+        if (Initializer.playerMoving == true && walkingSoundCooldown == false) {
+            StartCoroutine(WalkRepeat());
+            PlaySFX("Step");
+            Debug.Log("AAAAA");
+        }
     }
 
+    //Lets this script play SFX.
     public void PlaySFX(string name) {
         Sound s = Array.Find(SFXSounds, x => x.name == name);
         if(s == null) {
@@ -171,5 +192,12 @@ public class SceneManagerer : MonoBehaviour
             SFXSource.clip = s.clip;
             SFXSource.Play();
         }
+    }
+
+    private IEnumerator WalkRepeat() {
+        walkingSoundCooldown = true;
+        PlaySFX("Step");
+        yield return new WaitForSeconds(0.1f);
+        walkingSoundCooldown = false;
     }
 }

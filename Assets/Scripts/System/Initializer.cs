@@ -10,4 +10,5 @@ public static class Initializer
     public static float batteryPower;
     public static float SFXVolume;
     public static bool worldFrozen;
+    public static bool playerMoving;
 }
