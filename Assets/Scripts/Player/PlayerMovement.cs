@@ -45,11 +45,12 @@ public class PlayerMovement : MonoBehaviour
         //Check if walking
         if (rb.velocity.x == 0 && rb.velocity.y == 0) {
             playerAnim.SetBool("Walking", false);
+            Initializer.playerMoving = false;
         } 
         else 
         {
             playerAnim.SetBool("Walking", true);
-        
+            Initializer.playerMoving = true;
             if(PlayerVars.canTurnInteract)
             {
                 //Facing Logic

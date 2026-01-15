@@ -13,7 +13,7 @@ public class Initializing : MonoBehaviour {
         Initializer.PixelCamera = PixelCameraINIT;
     }
     
-
+    //Initializes some global variables.
     public void Initialization() {
         Initializer.RT = RTINIT;
         Initializer.PixelatedPanel = PixelatedPanelINIT;
