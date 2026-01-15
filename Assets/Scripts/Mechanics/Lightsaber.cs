@@ -21,6 +21,9 @@ public class Lightsaber : Item
         slashAnim.speed = originalClipTime / activationTime;
 
         base.Start();
+
+        // set slash to current position
+        transform.GetChild(0).localPosition = new Vector3(0, 0, 0);
     }
 
     // updates the position of the slash each frame to be a bit in front of the player, only if the salsh is activated
@@ -35,6 +38,12 @@ public class Lightsaber : Item
         }
 
         base.Update();
+    }
+
+    protected override void OnEndActivation()
+    {
+        PlayerVars.canTurnInteract = true;
+        base.OnEndActivation();
     }
 
     // When we first acitvate it, have to set these slash directions, then we can trigger the slashing.

@@ -70,10 +70,7 @@ public abstract class Item : MonoBehaviour
             // until its down for cases like a sword slash not turning with the player
             if(activated && Time.time - startTime > activationTime)
             {
-                inCooldown = true;
-                activated = false;
-                startTime = Time.time;
-                PlayerVars.canTurnInteract = true;
+                OnEndActivation();
             }
             // when the cooldown is over, we say the item can be used again
             else if (inCooldown && Time.time - startTime > cooldown)
@@ -106,6 +103,14 @@ public abstract class Item : MonoBehaviour
             startTime = Time.time;
             PlayerVars.canTurnInteract = false;
         }
+    }
+
+    protected virtual void OnEndActivation()
+    {
+        inCooldown = true;
+        activated = false;
+        startTime = Time.time;
+
     }
 
 

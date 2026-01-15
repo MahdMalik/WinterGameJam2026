@@ -179,7 +179,7 @@ public class SceneManagerer : MonoBehaviour
         if (Initializer.playerMoving == true && walkingSoundCooldown == false) {
             StartCoroutine(WalkRepeat());
             PlaySFX("Step");
-            Debug.Log("AAAAA");
+            // Debug.Log("AAAAA");
         }
     }
 
