@@ -132,6 +132,7 @@ public class SceneManagerer : MonoBehaviour
         Initial.GetComponent<Initializing>().Initialization();
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
+        Initializer.worldFrozen = false;
     }
 
     private void AdjustRenderTextureSize(int width, int height) {

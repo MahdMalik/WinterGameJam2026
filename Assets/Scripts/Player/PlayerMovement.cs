@@ -92,6 +92,12 @@ public class PlayerMovement : MonoBehaviour
     // resets the player when a new run starts
     void ResetPlayer()
     {
+        StartCoroutine(DeathAnim());
+    }
+    IEnumerator DeathAnim() {
+        playerAnim.SetTrigger("Dead");
+        Initializer.worldFrozen = true;
+        yield return new WaitForSeconds(1.0f);
         SceneManagement.GetComponent<SceneManagerer>().Next();
     }
 
