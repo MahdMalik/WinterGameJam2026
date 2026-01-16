@@ -13301,14 +13301,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1912858129}
     - target: {fileID: 3684791015166602484, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: bulletSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3684791015166602484, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
-      propertyPath: activationTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3684791015166602484, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
       propertyPath: theInventoryManager
       value: 
       objectReference: {fileID: 676440647}
