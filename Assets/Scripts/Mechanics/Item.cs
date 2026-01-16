@@ -33,6 +33,11 @@ public abstract class Item : MonoBehaviour
     protected bool oneTimeActivation;
 
     protected bool usedUp;
+
+    [SerializeField]
+
+    public Sound[] ItemSounds;
+    [SerializeField] protected AudioSource ItemSource;
     
     // Start is called before the first frame update
     protected virtual void Start()
@@ -70,6 +75,7 @@ public abstract class Item : MonoBehaviour
             // until its down for cases like a sword slash not turning with the player
             if(activated && Time.time - startTime > activationTime)
             {
+                PlayItemSFX("useitem");
                 OnEndActivation();
             }
             // when the cooldown is over, we say the item can be used again
@@ -94,6 +100,7 @@ public abstract class Item : MonoBehaviour
         if(oneTimeActivation)
         {
             DestroyItem();
+            PlayItemSFX("useitem");
             theInventoryManager.RemoveItem();
         }
         else
@@ -172,5 +179,16 @@ public abstract class Item : MonoBehaviour
     void OnDestroy()
     {
         InventoryManager.itemsRemoved -= ResetItem;
+    }
+
+    //Lets this script play SFX.
+    public void PlayItemSFX(string name) {
+        Sound s = Array.Find(ItemSounds, x => x.name == name);
+        if(s == null) {
+            Debug.Log("No Sounds");
+        } else {
+            ItemSource.clip = s.clip;
+            ItemSource.Play();
+        }
     }
 }

@@ -43,7 +43,9 @@ public class Battery : MonoBehaviour
             return;
         }
         //decrease battery
-        Initializer.batteryPower -= decreasePerSec * Time.deltaTime;
+        if (Initializer.worldFrozen == false) {
+            Initializer.batteryPower -= decreasePerSec * Time.deltaTime;
+        }
 
         UpdateBattery();
     }

@@ -33,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Movement
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed);
+        if (Initializer.worldFrozen == false) {
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed);
+        } else {
+            rb.velocity = new Vector2(0.0f, 0.0f);
+        }
         }
 
 
@@ -50,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("Walking", false);
             Initializer.playerMoving = false;
         } 
-        else 
+        else if (Initializer.worldFrozen == false)
         {
             playerAnim.SetBool("Walking", true);
             Initializer.playerMoving = true;
@@ -84,6 +88,12 @@ public class PlayerMovement : MonoBehaviour
     // resets the player when a new run starts
     void ResetPlayer()
     {
+        StartCoroutine(DeathAnim());
+    }
+    IEnumerator DeathAnim() {
+        playerAnim.SetTrigger("Dead");
+        Initializer.worldFrozen = true;
+        yield return new WaitForSeconds(1.0f);
         SceneManagement.GetComponent<SceneManagerer>().Next();
     }
 
