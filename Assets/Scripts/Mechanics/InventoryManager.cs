@@ -151,7 +151,8 @@ public class InventoryManager : MonoBehaviour
     {
         if(inventory[selectedSlot] != null && !inventory[selectedSlot].getCooldown() && !inventory[selectedSlot].getActivated())
         {
-            inventory[selectedSlot].Activate();   
+            inventory[selectedSlot].Activate();
+            Debug.Log(inventory[selectedSlot]);
         }
     }
 
