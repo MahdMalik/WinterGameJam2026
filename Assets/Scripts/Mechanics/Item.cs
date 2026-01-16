@@ -108,7 +108,6 @@ public abstract class Item : MonoBehaviour
             activated = true;
             // starts timer too
             startTime = Time.time;
-            PlayerVars.canTurnInteract = false;
         }
     }
 
@@ -117,7 +116,6 @@ public abstract class Item : MonoBehaviour
         inCooldown = true;
         activated = false;
         startTime = Time.time;
-
     }
 
 
@@ -141,10 +139,10 @@ public abstract class Item : MonoBehaviour
     }
 
     // drops the item a bit in front of the player
-    public void DropItem(Vector2 inputPos)
+    public void DropItem(Vector3 inputPos)
     {
         // sets position to input
-        transform.position = new Vector3(inputPos[0], inputPos[1], 3.8f);
+        transform.position = inputPos;
 
         //actually removes it from inventory
         inInventory = false;

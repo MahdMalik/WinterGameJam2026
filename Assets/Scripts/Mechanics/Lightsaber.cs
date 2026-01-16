@@ -32,9 +32,7 @@ public class Lightsaber : Item
     {
         if(activated)
         {
-            float xOffset = PlayerVars.PlayerFacing == 2 ? 1 : PlayerVars.PlayerFacing == 4 ? - 1 : 0; 
-            float yOffset = PlayerVars.PlayerFacing == 1 ? 1 : PlayerVars.PlayerFacing == 3 ? -1 : 0;
-            transform.position = new Vector3(player.transform.position.x + xOffset * 1.2f, player.transform.position.y + yOffset * 1.2f);
+            transform.position = HelperFunctions.PutDistanceAway(player.transform.position, 1.2f);
         }
 
         base.Update();
@@ -49,16 +47,10 @@ public class Lightsaber : Item
     // When we first acitvate it, have to set these slash directions, then we can trigger the slashing.
     public override void Activate()
     {
-        if (PlayerVars.PlayerFacing == 1) {
-            slashAnim.SetInteger("SlashDirection", 1);
-        } else if (PlayerVars.PlayerFacing == 2) {
-            slashAnim.SetInteger("SlashDirection", 2);
-        } else if (PlayerVars.PlayerFacing == 3) {
-            slashAnim.SetInteger("SlashDirection", 3);
-        } else {
-            slashAnim.SetInteger("SlashDirection", 4);
-        }
-        slashAnim.SetTrigger("Slashing");        
+        slashAnim.SetInteger("SlashDirection", PlayerVars.PlayerFacing);
+        
+        slashAnim.SetTrigger("Slashing");    
+        PlayerVars.canTurnInteract = false;    
         base.Activate();
         Initializer.batteryPower -= energyUse;
     }
