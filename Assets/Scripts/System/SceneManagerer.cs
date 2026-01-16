@@ -28,6 +28,9 @@ public class SceneManagerer : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+    }
+
+    private void Start() {
         //This sets up the texture used for the screen transition.
         Initializer.RT.Release();
         Initializer.RT.width = 1920;
@@ -44,6 +47,7 @@ public class SceneManagerer : MonoBehaviour
         Initializer.PixelCamera.gameObject.SetActive(false);
         Initializer.PixelCamera.Render();
         Initializer.playerMoving = false;
+        Initializer.worldFrozen = false;
         StartCoroutine(FadeInMusic());
     }
     
