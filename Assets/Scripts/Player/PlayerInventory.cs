@@ -53,12 +53,8 @@ public class PlayerInventory : MonoBehaviour
             // if there was actually something to remove, get its position relative to the player and put it there
             if(droppedItem != null)
             {
-                float xOffset = PlayerVars.PlayerFacing == 2 ? 1 : PlayerVars.PlayerFacing == 4 ? - 1 : 0; 
-                float yOffset = PlayerVars.PlayerFacing == 1 ? 1 : PlayerVars.PlayerFacing == 3 ? -1 : 0;
 
-                Vector2 thrownPosition = new Vector2(transform.position.x + xOffset * 1.5f, transform.position.y + yOffset * 1.5f);
-
-                droppedItem.DropItem(thrownPosition);
+                droppedItem.DropItem(HelperFunctions.PutDistanceAway(transform.position, 1.5f));
             }
 
         }

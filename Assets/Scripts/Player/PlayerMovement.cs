@@ -19,12 +19,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerAnim;
     [SerializeField] GameObject SceneManagement = null;
 
+    private Sprite[] movementSprites;
+
     // make sure that when the battery dies out, we restart the game (for now; normally
     // there'd be a game over screen)
     void Start()
     {
         SceneManagement = GameObject.Find("SceneManager");
         Battery.OnPlayerDied += ResetPlayer;
+        movementSprites = new Sprite[] {Up, Right, Down, Left};
     }
 
     void FixedUpdate()
@@ -56,34 +59,23 @@ public class PlayerMovement : MonoBehaviour
                 //Facing Logic
                 if(rb.velocity.x == 0 && rb.velocity.y > 0) {
                     PlayerVars.PlayerFacing = 1;
-                    playerAnim.SetInteger("WalkingDirection", 1);
+                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
                 }//Up
                 if (rb.velocity.x > 0) {
                     PlayerVars.PlayerFacing = 2;
-                    playerAnim.SetInteger("WalkingDirection", 2);
+                    interactSquare.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y + 0.5f, transform.position.z);
                 }//Right
                 if (rb.velocity.x == 0 && rb.velocity.y < 0) {
                     PlayerVars.PlayerFacing = 3;
-                    playerAnim.SetInteger("WalkingDirection", 3);
+                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
                 }//Down
                 if (rb.velocity.x < 0) {
                     PlayerVars.PlayerFacing = 4;
-                    playerAnim.SetInteger("WalkingDirection", 4);
+                    interactSquare.transform.position = new Vector3(transform.position.x - 0.8f, transform.position.y + 0.5f, transform.position.z);
                 }//Left
 
-                if(PlayerVars.PlayerFacing == 1) {
-                    PlayerSprite.sprite = Up;
-                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
-                } else if(PlayerVars.PlayerFacing == 2) {
-                    PlayerSprite.sprite = Right;
-                    interactSquare.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y + 0.5f, transform.position.z);
-                } else if(PlayerVars.PlayerFacing == 3) {
-                    PlayerSprite.sprite = Down;
-                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
-                } else if(PlayerVars.PlayerFacing == 4) {
-                    PlayerSprite.sprite = Left;
-                    interactSquare.transform.position = new Vector3(transform.position.x - 0.8f, transform.position.y + 0.5f, transform.position.z);
-                }
+                playerAnim.SetInteger("WalkingDirection", PlayerVars.PlayerFacing);
+                PlayerSprite.sprite = movementSprites[PlayerVars.PlayerFacing - 1];
             }
 
         }
