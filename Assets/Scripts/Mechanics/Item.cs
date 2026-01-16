@@ -111,7 +111,7 @@ public abstract class Item : MonoBehaviour
         }
     }
 
-    protected virtual void OnEndActivation()
+    public virtual void OnEndActivation()
     {
         inCooldown = true;
         activated = false;

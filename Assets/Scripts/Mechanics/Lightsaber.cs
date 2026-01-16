@@ -38,7 +38,7 @@ public class Lightsaber : Item
         base.Update();
     }
 
-    protected override void OnEndActivation()
+    public override void OnEndActivation()
     {
         PlayerVars.canTurnInteract = true;
         base.OnEndActivation();

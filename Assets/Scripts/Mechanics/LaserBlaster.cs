@@ -24,12 +24,10 @@ public class LaserBlaster : Item
     // of course.
     protected override void Update()
     {
-        theBullet.UpdateBullet();
-        
         base.Update();
     }
 
-    protected override void OnEndActivation()
+    public override void OnEndActivation()
     {
         theBullet.gameObject.SetActive(false);
         base.OnEndActivation();
@@ -39,11 +37,8 @@ public class LaserBlaster : Item
     public override void Activate()
     {
         theBullet.gameObject.SetActive(true);
-        Debug.Log("grok is this true?");
-
-        theBullet.Activate(player.transform.position, bulletSpeed);
-
-        
+        theBullet.gameObject.GetComponent<Collider2D>().enabled = true;
+        theBullet.Activate(player.transform.position, bulletSpeed, this);
         base.Activate();
     }
 }
