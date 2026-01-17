@@ -93,22 +93,27 @@ public class PlayerMovement : MonoBehaviour
         float distFromCenter = (float) Math.Sqrt( Math.Pow(Math.Abs(transform.position.x), 2) + Math.Pow(Math.Abs(transform.position.y), 2));
         if(distFromCenter > PlayerVars.maxDistFromCenter)
         {
-            Debug.Log("They went farther!");
+            // Debug.Log($"They went farther! At dist {distFromCenter}");
             PlayerVars.maxDistFromCenter = distFromCenter;
         }
 
-        // update every secohnd their max position and 
+        // update every secohnd their time survived 
         if(lastUpdate > 1)
         {
             PlayerVars.secondsSurvived += 1;
+            lastUpdate = 0;
         }
+        lastUpdate += Time.deltaTime;
     }
 
     // resets the player when a new run starts
     void ResetPlayer()
     {
         // Points system: Math.floor[ (time survived / 60) + (numEnemiesKilled / 2) + (maxDistFromCenter / 100) ] 
-        Initializer.pointsLastRun = (int) Math.Floor(
+        Debug.Log(PlayerVars.secondsSurvived / 60.0f);
+        Debug.Log(PlayerVars.numKillsThisRound / 2.0f);
+        Debug.Log(PlayerVars.maxDistFromCenter / 1000.0f);
+        Initializer.pointsLastRun = (int) Math.Ceiling(
           PlayerVars.secondsSurvived / 60.0f  +
           PlayerVars.numKillsThisRound / 2.0f +
           PlayerVars.maxDistFromCenter / 1000.0f
