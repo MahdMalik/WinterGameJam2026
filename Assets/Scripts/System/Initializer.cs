@@ -9,7 +9,7 @@ public static class Initializer
     public static Camera PixelCamera;
     public static float batteryPower;
     public static int maxBattery = 100;
-    public static int numSecondsFromMax = 5;
+    public static int numSecondsFromMax = 50;
     public static float SFXVolume;
     public static bool worldFrozen;
     public static bool playerMoving;
@@ -29,6 +29,9 @@ public static class Initializer
 
     public static bool guidingArrow = false;
 
+    public static float useSpeedMultiplier = 1f;
+    public static float cooldownMultiplier = 1f;
+
 
     public static Perk[] LoadPerks()
     {
@@ -36,8 +39,9 @@ public static class Initializer
         FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(194, 279), false);
         WalkSpeedBoost perk3 = new WalkSpeedBoost(1, perk2, new Vector2(461, 279), true);
         GuidingArrow perk4 = new GuidingArrow(1, perk3, new Vector2(728, 279), false);
-        ExtraBattery perk5 = new ExtraBattery(1, null, new Vector2(194, 125), false);
-        return new Perk[] {perk1, perk2, perk3, perk4, perk5};
+        ExtraBattery perk5 = new ExtraBattery(1, null, new Vector2(57, 2), false);
+        FasterWeapons perk6 = new FasterWeapons(1, null, new Vector2(-73, -121), false);
+        return new Perk[] {perk1, perk2, perk3, perk4, perk5, perk6};
     }
 
     public static Perk[] perks = LoadPerks();

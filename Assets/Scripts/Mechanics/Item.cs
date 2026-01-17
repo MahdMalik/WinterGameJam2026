@@ -57,6 +57,7 @@ public abstract class Item : MonoBehaviour
         spriteRenderer.sprite = image;
         inCooldown = false;
         activated = false;
+        cooldown *= Initializer.cooldownMultiplier;
         usedUp = false;
 
         // for lightsaber, its already in your inventory, so we do this accordingly
