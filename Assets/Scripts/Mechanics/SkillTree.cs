@@ -37,12 +37,12 @@ public class SkillTree : MonoBehaviour
 
         foreach(Perk thePerk in Initializer.perks)
         {
-            Transform childObject = transform.Find("Perks").Find($"{thePerk.perkName}{(thePerk.upgradedVer ? "Upgraded" : "")}");
+            Transform childObject = transform.Find("Perks").Find(thePerk.perkNameGameObj);
             childObject.localPosition =  thePerk.perkUiPos;
             // Debug.Log($"Uhhh it was {thePerk.perkUiPos}");
             childObject.GetChild(0).gameObject.SetActive(false);
 
-            childObject.GetChild(0).Find("PerkName").GetComponent<TextMeshProUGUI>().text = thePerk.perkName;
+            childObject.GetChild(0).Find("PerkName").GetComponent<TextMeshProUGUI>().text = thePerk.perkNameDisplayed;
             childObject.GetChild(0).Find("PerkDesc").GetComponent<TextMeshProUGUI>().text = thePerk.perkDesc;
             childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"Cost: {thePerk.perkCost} Points";
             AdjustBoughtText(childObject, thePerk);
@@ -58,7 +58,11 @@ public class SkillTree : MonoBehaviour
     public void PerkDataOpened()
     {
         GameObject buttonPressed = EventSystem.current.currentSelectedGameObject;
-        if(!perkMenuOpen) buttonPressed.transform.GetChild(0).gameObject.SetActive(true);
+        if(!perkMenuOpen)
+        {
+            buttonPressed.transform.SetAsLastSibling();
+            buttonPressed.transform.GetChild(0).gameObject.SetActive(true);
+        }
         perkMenuOpen = true;
     }
 
@@ -75,11 +79,12 @@ public class SkillTree : MonoBehaviour
 
     public void PurchasedItem()
     {
+        Debug.Log("This should run, at the very least");
         GameObject buttonPressed = EventSystem.current.currentSelectedGameObject;
         string perkName = buttonPressed.transform.parent.parent.name;
         foreach(Perk thePerk in Initializer.perks)
         {
-            if(thePerk.perkName == perkName)
+            if(thePerk.perkNameGameObj == perkName)
             {
                 if(thePerk.PerkPurchase())
                 {
@@ -89,10 +94,10 @@ public class SkillTree : MonoBehaviour
                 }
             }
             //if we just bought the item, want to update the next item. we are guarantted to always come across it in the array AFTER the original too.
-            else if(thePerk.prevPerk != null && thePerk.prevPerk.perkName == perkName && thePerk.prevPerk.activated)
+            else if(thePerk.prevPerk != null && thePerk.prevPerk.perkNameGameObj == perkName && thePerk.prevPerk.activated)
             {
                 Debug.Log("This should run!");
-                AdjustBoughtText(buttonPressed.transform.parent.parent.parent.Find($"{thePerk.perkName}{(thePerk.upgradedVer ? "Upgraded" : "")}"), thePerk);
+                AdjustBoughtText(buttonPressed.transform.parent.parent.parent.Find(thePerk.perkNameGameObj), thePerk);
                 break;
             }
         }
