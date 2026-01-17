@@ -14,4 +14,40 @@ public class OptionsButton : MonoBehaviour
         SceneManagerer.instance.VolumeBars();
         Debug.Log("Ok so this runs");
     }
+
+    public void SetMusic(System.Single sliderValue)
+    {
+        SceneManagerer.instance.volumeSet(sliderValue);
+    }
+
+    public void QuitGame()
+    {
+        SceneManagerer.instance.Quit();
+        Debug.Log("Ok so this runs");
+    }
+
+    public void ResumeGame()
+    {
+        SceneManagerer.instance.removePause();
+        Debug.Log("Ok so this runs");
+    }
+
+    public void RestartGame()
+    {
+        SceneManagerer.instance.Next();
+        Debug.Log("Ok so this runs");
+    }
+
+    public void SetSFX(System.Single sliderValue)
+    {
+        SceneManagerer.instance.SFXvolumeSet(sliderValue);
+    }
+
+    public void GoToTitle()
+    {
+        SceneManagerer.instance.Title();
+        Debug.Log("Ok so this runs");
+    }
+
+
 }

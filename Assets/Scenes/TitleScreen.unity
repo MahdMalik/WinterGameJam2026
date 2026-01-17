@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207923851}
+  - component: {fileID: 207923853}
   - component: {fileID: 207923852}
   m_Layer: 5
   m_Name: SFXVolumeChangingSlider
@@ -213,9 +214,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1506412935}
-        m_TargetAssemblyTypeName: SceneManagerer, Assembly-CSharp
-        m_MethodName: SFXvolumeSet
+      - m_Target: {fileID: 207923853}
+        m_TargetAssemblyTypeName: OptionsButton, Assembly-CSharp
+        m_MethodName: SetSFX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -225,6 +226,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &207923853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207923850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aac88c53c90b4c4aac9f3f510bd6c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &361614237
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +614,7 @@ GameObject:
   - component: {fileID: 819722730}
   - component: {fileID: 819722733}
   - component: {fileID: 819722732}
+  - component: {fileID: 819722734}
   - component: {fileID: 819722731}
   m_Layer: 5
   m_Name: Options
@@ -673,9 +687,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1506412935}
-        m_TargetAssemblyTypeName: SceneManagerer, Assembly-CSharp
-        m_MethodName: VolumeBars
+      - m_Target: {fileID: 819722734}
+        m_TargetAssemblyTypeName: OptionsButton, Assembly-CSharp
+        m_MethodName: OpenOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -723,6 +737,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819722729}
   m_CullTransparentMesh: 1
+--- !u!114 &819722734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819722729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aac88c53c90b4c4aac9f3f510bd6c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &838251516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080672902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757e4bc4e9e519d4f89908769cc25ef4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aac88c53c90b4c4aac9f3f510bd6c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1135090572
@@ -1565,17 +1591,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1506412935 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6401505107902488575, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-  m_PrefabInstance: {fileID: 3707880209268523585}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2336ba49dcec649b1d9e65334fa733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1676388669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +1734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735398485}
+  - component: {fileID: 1735398487}
   - component: {fileID: 1735398486}
   m_Layer: 5
   m_Name: VolumeChangingSlider
@@ -1802,9 +1818,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1506412935}
-        m_TargetAssemblyTypeName: SceneManagerer, Assembly-CSharp
-        m_MethodName: volumeSet
+      - m_Target: {fileID: 1735398487}
+        m_TargetAssemblyTypeName: OptionsButton, Assembly-CSharp
+        m_MethodName: SetMusic
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1814,6 +1830,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1735398487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735398484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aac88c53c90b4c4aac9f3f510bd6c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1776057465
 GameObject:
   m_ObjectHideFlags: 0

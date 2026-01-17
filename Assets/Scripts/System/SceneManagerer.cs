@@ -98,7 +98,7 @@ public class SceneManagerer : MonoBehaviour
 
     public void VolumeBars() {
         float distToTravel = 10f;
-        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 20f;
+        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 15f;
 
         
         if (volumeBarsVisible) {
