@@ -102,7 +102,11 @@ public class SceneManagerer : MonoBehaviour
         volumeBarsVisible = true;
     }
     private IEnumerator Pause() {
+        pauseScreen = GameObject.Find("pauseScreen");
+        for (int i = 0; i < 40; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 12.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
+        }
     }
     private IEnumerator BringOutBars() {
         for (int i = 0; i < 40; i++) {
