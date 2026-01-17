@@ -173,23 +173,31 @@ public class SceneManagerer : MonoBehaviour
             PlayerObject = GameObject.Find("Player");
             yield return new WaitForSeconds(0.05f);
             Debug.Log("Trying to Find.");
-            if ((Initializer.PixelCamera != null) && (PlayerObject != null) || !goingToMain) {
+            if ((Initializer.PixelCamera != null) && ((PlayerObject != null) || !goingToMain)) {
                 k = 10;
+                Initial.GetComponent<Initializing>().Initialization();
             }
         }
         //Makes sure the transition camera is on and starts raising resolution again.
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
-        Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        if (goingToMain) {
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        }
         for (int i = 27; i > 7; i--) {
             Initial.GetComponent<Initializing>().Initialization();
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
+        if (goingToMain) {
             Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        }        
         }
         for (int i = 41; i > 0; i--) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
+            if (goingToMain) {
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        } 
         }
         //Turns the transition off.
         Initial.GetComponent<Initializing>().Initialization();
