@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ReplayButton : MonoBehaviour
 {    
+    void Awake()
+    {
+        Debug.Log("HELP IN GAIA");
+    }
+    
     public void RestartGame()
     {
         SceneManagerer.instance.Next();
-        Debug.Log("A");
+        Debug.Log("Ok so this runs");
     }
 
     public void Test()
