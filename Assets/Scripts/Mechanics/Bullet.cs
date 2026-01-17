@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     public void Activate(Vector3 playerPos, float theBulletSpeed, LaserBlaster theBlaster)
     {
         rb = GetComponent<Rigidbody2D>();
-        directionShot = PlayerVars.PlayerFacing;
+        directionShot = Initializer.PlayerFacing;
         bulletSpeed = theBulletSpeed;
         blaster = theBlaster;
 

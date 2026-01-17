@@ -62,6 +62,7 @@ public class SceneManagerer : MonoBehaviour
         Initializer.PixelCamera.Render();
         Initializer.playerMoving = false;
         Initializer.worldFrozen = false;
+        PlayerObject = GameObject.Find("Player");
         StartCoroutine(FadeInMusic());
     }
     
@@ -94,12 +95,59 @@ public class SceneManagerer : MonoBehaviour
         Application.Quit();
     }
     public void Title() {
+        StartCoroutine(GOTOTITLE());
+    }
+
+    private IEnumerator GOTOTITLE() {
+        PlaySFX("Click");
+        goingToMain = false;
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars(10f));
+            yield return new WaitForSeconds(1.2f);
+        }
+        Initial.GetComponent<Initializing>().Initialization();
+        Initializer.PixelatedPanel.SetActive(true);
+        Initializer.PixelCamera.Render();
+        Initializer.PixelCamera.gameObject.SetActive(true);
+        StartCoroutine(FadeOutMusic());
+        //Lowers screen resolution.
+        for (int i = 1; i < 41; i++) {
+            AdjustRenderTextureSize(i, i);
+            yield return new WaitForSeconds(0.045f);
+        }
+        for (int i = 7; i < 27; i++) {
+            AdjustRenderTextureSize((i * i), (i * i));
+            yield return new WaitForSeconds(0.022f);
+        }
+        //Sends you to the title scene.
+        SceneManager.LoadSceneAsync(0);
+        StartCoroutine(FadeInMusic());
+        Initial.GetComponent<Initializing>().Initialization();
+        //Makes sure the transition camera is on and starts raising resolution again.
+        Initializer.PixelatedPanel.SetActive(true);
+        Initializer.PixelCamera.gameObject.SetActive(true);
+        for (int i = 27; i > 7; i--) {
+            Initial.GetComponent<Initializing>().Initialization();
+            AdjustRenderTextureSize((i * i), (i * i));
+            yield return new WaitForSeconds(0.022f);      
+        }
+        for (int i = 41; i > 0; i--) {
+            AdjustRenderTextureSize(i, i);
+            yield return new WaitForSeconds(0.045f);
+        }
+        //Turns the transition off.
+        Initial.GetComponent<Initializing>().Initialization();
+        Initializer.PixelatedPanel.SetActive(false);
+        Initializer.PixelCamera.gameObject.SetActive(false);
+        Initializer.worldFrozen = false;
     }
 
     public void VolumeBars() {
+        leftVolumeBar = GameObject.Find("VolumeChangingSlider");
+        rightVolumeBar = GameObject.Find("SFXVolumeChangingSlider");
         float distToTravel = 10f;
-        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 20f;
-
+        Debug.Log("AAAAaaa");
+        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 15f;
         
         if (volumeBarsVisible) {
             StartCoroutine(BringOutBars(distToTravel));

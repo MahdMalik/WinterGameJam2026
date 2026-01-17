@@ -40,17 +40,17 @@ public class Lightsaber : Item
 
     public override void OnEndActivation()
     {
-        PlayerVars.canTurnInteract = true;
+        Initializer.canTurnInteract = true;
         base.OnEndActivation();
     }
 
     // When we first acitvate it, have to set these slash directions, then we can trigger the slashing.
     public override void Activate()
     {
-        slashAnim.SetInteger("SlashDirection", PlayerVars.PlayerFacing);
+        slashAnim.SetInteger("SlashDirection", Initializer.PlayerFacing);
         
         slashAnim.SetTrigger("Slashing");    
-        PlayerVars.canTurnInteract = false;    
+        Initializer.canTurnInteract = false;    
         base.Activate();
         Initializer.batteryPower -= energyUse;
     }
