@@ -97,25 +97,29 @@ public class SceneManagerer : MonoBehaviour
     }
 
     public void VolumeBars() {
+        float distToTravel = 10f;
+        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 20f;
+
+        
         if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
+            StartCoroutine(BringOutBars(distToTravel));
         } else {
-            StartCoroutine(BringInBars());
+            StartCoroutine(BringInBars(distToTravel));
         }
     }
 
-    private IEnumerator BringInBars() {
+    private IEnumerator BringInBars(float distTraveled) {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + distTraveled, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - distTraveled, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = true;
     }
-    private IEnumerator BringOutBars() {
+    private IEnumerator BringOutBars(float distTraveled) {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - distTraveled, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + distTraveled, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = false;
@@ -138,7 +142,7 @@ public class SceneManagerer : MonoBehaviour
 
     private IEnumerator Unpause() {
         if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
+            StartCoroutine(BringOutBars(10f));
             yield return new WaitForSeconds(1.2f);
         }
         pauseScreen = GameObject.Find("pauseScreen");
@@ -167,7 +171,7 @@ public class SceneManagerer : MonoBehaviour
             goingToMain = false;
         }
         if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
+            StartCoroutine(BringOutBars(10f));
             yield return new WaitForSeconds(1.2f);
         }
         //Sets the screen transition on.
