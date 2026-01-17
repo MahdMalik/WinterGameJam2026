@@ -97,10 +97,9 @@ public class SceneManagerer : MonoBehaviour
     }
 
     public void VolumeBars() {
+        Debug.Log("Da vinky");
         float distToTravel = 10f;
         if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 15f;
-
-        
         if (volumeBarsVisible) {
             StartCoroutine(BringOutBars(distToTravel));
         } else {
