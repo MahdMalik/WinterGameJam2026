@@ -11,6 +11,7 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging;
     public bool gamePaused;
+    public bool pausing;
     public bool goingToMain;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
@@ -127,14 +128,28 @@ public class SceneManagerer : MonoBehaviour
         pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 20.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
+        Debug.Log("Done Pausing");
+        pausing = false;
+        gamePaused = true;
     }
-    public IEnumerator Unpause() {
+    public void removePause() {
+        StartCoroutine(Unpause());
+    }
+
+    private IEnumerator Unpause() {
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars());
+            yield return new WaitForSeconds(1.2f);
+        }
         pauseScreen = GameObject.Find("pauseScreen");
         for (int i = 0; i < 50; i++) {
         pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 30.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         Initializer.worldFrozen = false;
+        Debug.Log("Done Unpausing");
+        pausing = false;
+        gamePaused = false;
     }
 
 
@@ -254,12 +269,14 @@ public class SceneManagerer : MonoBehaviour
             Next();
         }
         if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex == 1)) {
-            if (gamePaused) {
-                gamePaused = false;
+            if (!pausing) {
+                if (gamePaused) {
+                pausing = true;
                 StartCoroutine(Unpause());
             } else {
-                gamePaused = true;
+                pausing = true;
                 StartCoroutine(Pause());
+            }
             }
         }
         //Moves the screen transition camera to the player at all times.
