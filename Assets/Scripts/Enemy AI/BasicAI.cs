@@ -27,9 +27,12 @@ public class BasicAI : MonoBehaviour
 
     public GameObject playerObj;          // Reference to the player GameObject
 
+    private float enemyRadius;
+
     void Start()
     {
         // Try to find the player
+        enemyRadius = GetComponent<CircleCollider2D>().radius;
 
         if(playerObj != null)
         {
@@ -97,7 +100,12 @@ public class BasicAI : MonoBehaviour
         if(rb != null)
         {
             // Physics-based movement
-            rb.velocity = direction * currentSpeed;
+            rb.velocity = Vector2.Lerp(
+                rb.velocity,
+                direction * currentSpeed,
+                0.2f
+            );
+
         }
         else
         {
@@ -116,17 +124,22 @@ public class BasicAI : MonoBehaviour
     bool IsWallAhead(Vector2 direction)
     {
         Vector2 origin = (Vector2)transform.position + wallCheckOffset;
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, wallCheckDistance, wallLayers);
+        RaycastHit2D hit = Physics2D.CircleCast(
+            origin,
+            enemyRadius,
+            direction,
+            wallCheckDistance,
+            wallLayers
+        );
 
-        if(debugWallRay)
+        if (debugWallRay)
         {
-            Color rayColor = hit.collider != null ? Color.red : Color.green;
-            Debug.DrawRay(origin, direction * wallCheckDistance, rayColor);
+            Debug.DrawRay(origin, direction * wallCheckDistance,
+                hit.collider ? Color.red : Color.green);
         }
 
         return hit.collider != null;
     }
-
     Vector2 FindClearPath(Vector2 preferredDirection)
     {
         Vector2 origin = (Vector2)transform.position + wallCheckOffset;

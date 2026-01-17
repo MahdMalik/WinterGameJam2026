@@ -16,6 +16,11 @@ public class Door : MonoBehaviour
     private bool SealOpened;
     private int DoorOpen = 0;
 
+    void Starts()
+    {
+        doorHitbox.enabled = true;
+    }
+
     void Update()
     {
         if(Player.GetComponent<PlayerMovement>().OpeningDoor) {
@@ -42,7 +47,8 @@ public class Door : MonoBehaviour
         DoorSprite.sprite = PartOpen;
         yield return new WaitForSeconds(time);
         DoorSprite.sprite = Open;
-        doorHitbox.isTrigger = true;
+        // doorHitbox.isTrigger = true;
+        doorHitbox.enabled = false;
         yield return new WaitForSeconds(time);
         DoorOpen = 1;
     }
@@ -50,6 +56,7 @@ public class Door : MonoBehaviour
     private IEnumerator CloseTheDoor(float time) {
         DoorSprite.sprite = PartOpen;
         doorHitbox.isTrigger = false;
+        doorHitbox.enabled = true;
         yield return new WaitForSeconds(time);
         DoorSprite.sprite = PartClosed;
         yield return new WaitForSeconds(time);
