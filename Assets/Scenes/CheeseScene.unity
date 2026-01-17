@@ -74589,14 +74589,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 --- !u!1 &1390971337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8291935198040838935, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
@@ -74955,7 +74947,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1074163975523466486, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
   m_PrefabInstance: {fileID: 1886111827}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!1001 &1886111827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75076,11 +75067,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-    - target: {fileID: 5942066928916751454, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -330
-=======
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -75108,7 +75094,6 @@ PrefabInstance:
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6604499123020121213, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -75200,10 +75185,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-<<<<<<< Updated upstream
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-=======
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1074163975523466486, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       insertIndex: -1
@@ -75221,13 +75202,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8291935198040838935, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1390971339}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
 --- !u!1 &1911568626 stripped
 GameObject:
