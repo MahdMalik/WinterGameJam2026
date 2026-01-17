@@ -217,7 +217,7 @@ public class SceneManagerer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P)) {
             Next();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex != 0)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex == 1)) {
             StartCoroutine(Pause());
         }
         //Moves the screen transition camera to the player at all times.
