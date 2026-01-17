@@ -24,10 +24,15 @@ public abstract class Perk
         perkUiPos = pos;
         upgradedVer = ifUpgrade;
     }
+
+    public bool CheckAvailableStatus()
+    {
+        return prevPerk == null || prevPerk.activated == true;
+    }
     
     public bool PerkPurchase()
     {
-        if(!activated && Initializer.perkPoints >= perkCost && (prevPerk == null || prevPerk.activated == true) )
+        if(!activated && Initializer.perkPoints >= perkCost && CheckAvailableStatus() )
         {
             Debug.Log("Purchase yes!");
             activated = true;

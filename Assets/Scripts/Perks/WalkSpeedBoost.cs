@@ -11,6 +11,6 @@ public class WalkSpeedBoost : Perk
     
     protected override void ActivatePerk()
     {
-        Initializer.playerSpeed *= 2;
+        Initializer.playerSpeed *= 1.15f;
     }
 }

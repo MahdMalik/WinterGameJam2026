@@ -22,9 +22,9 @@ public class SkillTree : MonoBehaviour
         currentPoints.text = $"CURRENT POINTS: {Initializer.perkPoints}";
     }
 
-    void AdjustBoughtText(Transform mainPerkObject, bool boughtStatus)
+    void AdjustBoughtText(Transform mainPerkObject, Perk thePerk)
     {
-        mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = boughtStatus ? "Bought" : "Buy";
+        mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = thePerk.activated ? "Bought" : thePerk.CheckAvailableStatus() ? "Buy" : "Locked";
     }
     
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class SkillTree : MonoBehaviour
             childObject.GetChild(0).Find("PerkName").GetComponent<TextMeshProUGUI>().text = thePerk.perkName;
             childObject.GetChild(0).Find("PerkDesc").GetComponent<TextMeshProUGUI>().text = thePerk.perkDesc;
             childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"Cost: {thePerk.perkCost} Points";
-            AdjustBoughtText(childObject, thePerk.activated);
+            AdjustBoughtText(childObject, thePerk);
         }
     }
 
@@ -84,9 +84,15 @@ public class SkillTree : MonoBehaviour
                 if(thePerk.PerkPurchase())
                 {
                     PerkDataClosed(buttonPressed);
-                    AdjustBoughtText(buttonPressed.transform.parent.parent, true);
+                    AdjustBoughtText(buttonPressed.transform.parent.parent, thePerk);
                     UpdateCurrentPoints();
                 }
+            }
+            //if we just bought the item, want to update the next item. we are guarantted to always come across it in the array AFTER the original too.
+            else if(thePerk.prevPerk != null && thePerk.prevPerk.perkName == perkName && thePerk.prevPerk.activated)
+            {
+                Debug.Log("This should run!");
+                AdjustBoughtText(buttonPressed.transform.parent.parent.parent.Find($"{thePerk.perkName}{(thePerk.upgradedVer ? "Upgraded" : "")}"), thePerk);
                 break;
             }
         }

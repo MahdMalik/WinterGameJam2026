@@ -26,10 +26,10 @@ public class Door : MonoBehaviour
         if (doorCheckHitbox.IsTouchingLayers(LayerMask.GetMask("Player"))) {
             if (DoorOpen == 0) {
                 DoorOpen = 2;
-                StartCoroutine(OpenTheDoor(OpenTime));
+                StartCoroutine(OpenTheDoor(OpenTime * Initializer.doorOpeningSpeed));
             } else if (DoorOpen == 1) {
                 DoorOpen = 2;
-                StartCoroutine(CloseTheDoor(OpenTime));
+                StartCoroutine(CloseTheDoor(OpenTime * Initializer.doorOpeningSpeed));
             }
         }
     }

@@ -25,11 +25,14 @@ public static class Initializer
 
     public static float playerSpeed = 200f;
 
+    public static float doorOpeningSpeed = 1f;
+
 
     public static Perk[] LoadPerks()
     {
         WalkSpeedBoost perk1 = new WalkSpeedBoost(2, null, new Vector2(-73, 125), false);
-        return new Perk[] {perk1};
+        FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(136, 279), false);
+        return new Perk[] {perk1, perk2};
     }
 
     public static Perk[] perks = LoadPerks();
