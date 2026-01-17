@@ -244,16 +244,15 @@ public class SceneManagerer : MonoBehaviour
 
 
 
-    public void volumeSet(System.Single sliderValue) {
-        if (!volumeChanging) {
-            volume = sliderValue;
+    public void volumeSet(float slider) {
+        if (!volumeChanging) 
+            volume = slider;
             PlaySFX("Click");
         }
-    }
 
-    public void SFXvolumeSet(System.Single sliderValue) {
+    public void SFXvolumeSet(float slider2) {
         if (!volumeChanging) {
-            SetSFXVolume = sliderValue;
+            SetSFXVolume = slider2;
             Initializer.SFXVolume = SetSFXVolume;
             PlaySFX("Click");
         }
