@@ -144,7 +144,7 @@ public class SceneManagerer : MonoBehaviour
             Initial.GetComponent<Initializing>().Initialization();
             PlayerObject = GameObject.Find("Player");
             yield return new WaitForSeconds(0.05f);
-            Debug.Log("Trying to Find.");
+            // Debug.Log("Trying to Find.");
             if ((Initializer.PixelCamera != null) && (PlayerObject != null) && SceneManager.GetActiveScene().buildIndex == 1) {
                 k = 10;
             }
