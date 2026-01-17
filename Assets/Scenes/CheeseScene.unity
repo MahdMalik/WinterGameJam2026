@@ -67638,6 +67638,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1376816503629698104, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1478445431695502677, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -67662,6 +67666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2337887050737356797, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5521520832433332208, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -67670,13 +67678,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6604499123020121213, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
+    - target: {fileID: 6682835179842629242, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8019152907085709067, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_AnchorMax.x
@@ -67689,6 +67693,14 @@ PrefabInstance:
     - target: {fileID: 8019152907085709067, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793477743552975823, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793477743552975823, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

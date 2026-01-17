@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class OptionsButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Debug.Log("HELP IN GAIA");
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void OpenOptions()
     {
-        
+        SceneManagerer.instance.VolumeBars();
+        Debug.Log("Ok so this runs");
     }
 }

@@ -2289,22 +2289,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258949243539525886, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3258949243539525886, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3258949243539525886, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.0036621094
-      objectReference: {fileID: 0}
-    - target: {fileID: 3258949243539525886, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.001953125
-      objectReference: {fileID: 0}
     - target: {fileID: 8261336290712036387, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
       propertyPath: m_Name
       value: SceneManager

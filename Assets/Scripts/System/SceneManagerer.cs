@@ -89,6 +89,11 @@ public class SceneManagerer : MonoBehaviour
     public void Next() {
         StartCoroutine(GoToNextScene());
     }
+    public void Quit() {
+        Application.Quit();
+    }
+    public void Title() {
+    }
 
     public void VolumeBars() {
         if (volumeBarsVisible) {
@@ -123,10 +128,10 @@ public class SceneManagerer : MonoBehaviour
         yield return new WaitForSeconds(0.03f);
         }
     }
-    private IEnumerator Unpause() {
+    public IEnumerator Unpause() {
         pauseScreen = GameObject.Find("pauseScreen");
-        for (int i = 0; i < 75; i++) {
-        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 20.0f, pauseScreen.transform.position.z);
+        for (int i = 0; i < 50; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 30.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         Initializer.worldFrozen = false;
