@@ -31,13 +31,16 @@ public class SceneManagerer : MonoBehaviour
     private void Awake() {
         if (instance == null) {
             instance = this;
+            print("This should run once");
             DontDestroyOnLoad(gameObject);
         } else {
+            print("This should run a couple times");
             Destroy(gameObject);
         }
     }
 
     private void Start() {
+        print("This should also run once");
         //This sets up the texture used for the screen transition.
         Initializer.RT.Release();
         Initializer.RT.width = 1920;
