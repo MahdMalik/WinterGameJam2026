@@ -36,8 +36,8 @@ public static class Initializer
         FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(194, 279), false);
         WalkSpeedBoost perk3 = new WalkSpeedBoost(1, perk2, new Vector2(461, 279), true);
         GuidingArrow perk4 = new GuidingArrow(1, perk3, new Vector2(728, 279), false);
-        ExtraBattery perk4 = new GuidingArrow(1, perk3, new Vector2(728, 279), false);
-        return new Perk[] {perk1, perk2, perk3, perk4};
+        ExtraBattery perk5 = new ExtraBattery(1, null, new Vector2(194, 125), false);
+        return new Perk[] {perk1, perk2, perk3, perk4, perk5};
     }
 
     public static Perk[] perks = LoadPerks();
