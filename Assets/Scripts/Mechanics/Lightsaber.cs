@@ -16,14 +16,16 @@ public class Lightsaber : Item
     //ratio of playback speed by. 
     protected override void Start()
     {
-        originalClipTime = swordSlashClip.length;
+        activationTime *= Initializer.useSpeedMultiplier;
         
-        slashAnim.speed = originalClipTime / activationTime;
-
         base.Start();
 
         // set slash to current position
         transform.GetChild(0).localPosition = new Vector3(0, 0, 0);
+
+        originalClipTime = swordSlashClip.length;
+        
+        slashAnim.speed = originalClipTime / activationTime;
     }
 
     // updates the position of the slash each frame to be a bit in front of the player, only if the salsh is activated

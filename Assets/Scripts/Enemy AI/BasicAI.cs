@@ -5,10 +5,10 @@ using UnityEngine;
 public class BasicAI : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;           // How fast the enemy moves
-    public float chargeSpeed = 8f;         // Speed when charging at player
-    public float aggroRange = 8f;          // Distance to detect player and start charging
-    public float stopDistance = 0.5f;      // Stop charging when this close to player
+    public float regSpeed = .5f;
+    public float chargeSpeed = 2f;         // Speed when charging at player
+    public float aggroRange = 1f;          // Distance to detect player and start charging
+    public float stopDistance = 1f;      // Stop charging when this close to player
 
     [Header("Collision Settings")]
     public LayerMask wallLayers;           // Which layers count as walls
@@ -24,7 +24,6 @@ public class BasicAI : MonoBehaviour
 
     private Transform player;              // Reference to the player's transform
     private Rigidbody2D rb;                // For physics-based movement (optional)
-    private bool isCharging = false;
 
     public GameObject playerObj;          // Reference to the player GameObject
 
@@ -50,28 +49,19 @@ public class BasicAI : MonoBehaviour
             return;
         
         // Calculate distance between enemy and player
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         // Check if player is in aggro range
         if(distanceToPlayer < aggroRange)
         {
-            isCharging = true;
-            ChargeTowardsPlayer(distanceToPlayer);
-        }
-        else
-        {
-            isCharging = false;
+            MoveTowardsPlayer(distanceToPlayer);
         }
     }
 
-    void ChargeTowardsPlayer(float distanceToPlayer)
+    void MoveTowardsPlayer(float distanceToPlayer)
     {
-        // Stop moving if very close to player
-        if(distanceToPlayer < stopDistance)
-            return;
-
-        // Determine which speed to use
-        float currentSpeed = isCharging ? chargeSpeed : moveSpeed;
+        // Slow down if very close to player
+        float currentSpeed = (distanceToPlayer < stopDistance) ? regSpeed : chargeSpeed;
 
         Vector2 direction = (player.position - transform.position).normalized;
 
@@ -226,6 +216,4 @@ public class BasicAI : MonoBehaviour
             }
         }
     }
-
-    public bool IsCharging => isCharging;
 }
