@@ -16,8 +16,10 @@ public class SceneManagerer : MonoBehaviour
     [SerializeField] GameObject Initial;
     public bool volumeBarsVisible = false;
 
+    //Pause Menu Objects
     [SerializeField] GameObject leftVolumeBar;
     [SerializeField] GameObject rightVolumeBar;
+    [SerializeField] GameObject pauseScreen;
 
     public float SetSFXVolume = 0.3f;
     public Sound[] SFXSounds;
@@ -48,6 +50,7 @@ public class SceneManagerer : MonoBehaviour
         MusicManagement = GameObject.Find("MusicManager");
         leftVolumeBar = GameObject.Find("VolumeChangingSlider");
         rightVolumeBar = GameObject.Find("SFXVolumeChangingSlider");
+        pauseScreen = GameObject.Find("pauseScreen");
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
         Initializer.PixelCamera.Render();
@@ -98,6 +101,9 @@ public class SceneManagerer : MonoBehaviour
         }
         volumeBarsVisible = true;
     }
+    private IEnumerator Pause() {
+        yield return new WaitForSeconds(0.03f);
+    }
     private IEnumerator BringOutBars() {
         for (int i = 0; i < 40; i++) {
         leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
@@ -110,6 +116,10 @@ public class SceneManagerer : MonoBehaviour
 
 
     private IEnumerator GoToNextScene() {
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars());
+            yield return new WaitForSeconds(1.2f);
+        }
         Initializer.playerMoving = false;
         Initializer.worldFrozen = true;
         if (SceneManager.GetActiveScene().buildIndex == 1) {
@@ -206,6 +216,9 @@ public class SceneManagerer : MonoBehaviour
         //If P is pressed, go to the next scene. Used instead of a button because buttons are stupid.
         if (Input.GetKeyDown(KeyCode.P)) {
             Next();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex != 0)) {
+            StartCoroutine(Pause());
         }
         //Moves the screen transition camera to the player at all times.
         if (PlayerObject != null) {
