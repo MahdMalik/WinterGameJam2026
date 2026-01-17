@@ -11,7 +11,10 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging;
     public bool gamePaused;
+<<<<<<< Updated upstream
     public bool goingToMain;
+=======
+>>>>>>> Stashed changes
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
