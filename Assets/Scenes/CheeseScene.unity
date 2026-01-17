@@ -232017,10 +232017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662566c2ecb4d6040b6f9942a5cdef61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regSpeed: 0.1
-  chargeSpeed: 2
-  aggroRange: 10
-  stopDistance: 0.5
+  regSpeed: 1
+  chargeSpeed: 4
+  aggroRange: 6
+  stopDistance: 1.5
   wallLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -232352,3 +232352,4 @@ SceneRoots:
   - {fileID: 1401171493}
   - {fileID: 1501685169}
   - {fileID: 545335328}
+  - {fileID: 1946383875}
