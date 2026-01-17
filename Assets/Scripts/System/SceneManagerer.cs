@@ -11,6 +11,7 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging;
     public bool gamePaused;
+    public bool pausing;
     public bool goingToMain;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
@@ -96,25 +97,29 @@ public class SceneManagerer : MonoBehaviour
     }
 
     public void VolumeBars() {
+        float distToTravel = 10f;
+        if(SceneManager.GetActiveScene().buildIndex == 2) distToTravel = 20f;
+
+        
         if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
+            StartCoroutine(BringOutBars(distToTravel));
         } else {
-            StartCoroutine(BringInBars());
+            StartCoroutine(BringInBars(distToTravel));
         }
     }
 
-    private IEnumerator BringInBars() {
+    private IEnumerator BringInBars(float distTraveled) {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + distTraveled, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - distTraveled, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = true;
     }
-    private IEnumerator BringOutBars() {
+    private IEnumerator BringOutBars(float distTraveled) {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - distTraveled, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + distTraveled, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = false;
@@ -127,14 +132,28 @@ public class SceneManagerer : MonoBehaviour
         pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 20.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
+        Debug.Log("Done Pausing");
+        pausing = false;
+        gamePaused = true;
     }
-    public IEnumerator Unpause() {
+    public void removePause() {
+        StartCoroutine(Unpause());
+    }
+
+    private IEnumerator Unpause() {
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars(10f));
+            yield return new WaitForSeconds(1.2f);
+        }
         pauseScreen = GameObject.Find("pauseScreen");
         for (int i = 0; i < 50; i++) {
         pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 30.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         Initializer.worldFrozen = false;
+        Debug.Log("Done Unpausing");
+        pausing = false;
+        gamePaused = false;
     }
 
 
@@ -152,7 +171,7 @@ public class SceneManagerer : MonoBehaviour
             goingToMain = false;
         }
         if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
+            StartCoroutine(BringOutBars(10f));
             yield return new WaitForSeconds(1.2f);
         }
         //Sets the screen transition on.
@@ -225,16 +244,16 @@ public class SceneManagerer : MonoBehaviour
 
 
 
-    public void volumeSet(System.Single sliderValue) {
+    public void volumeSet(float slider) {
         if (!volumeChanging) {
-            volume = sliderValue;
+            volume = slider;
             PlaySFX("Click");
         }
     }
 
-    public void SFXvolumeSet(System.Single sliderValue) {
+    public void SFXvolumeSet(float slider2) {
         if (!volumeChanging) {
-            SetSFXVolume = sliderValue;
+            SetSFXVolume = slider2;
             Initializer.SFXVolume = SetSFXVolume;
             PlaySFX("Click");
         }
@@ -254,12 +273,14 @@ public class SceneManagerer : MonoBehaviour
             Next();
         }
         if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex == 1)) {
-            if (gamePaused) {
-                gamePaused = false;
+            if (!pausing) {
+                if (gamePaused) {
+                pausing = true;
                 StartCoroutine(Unpause());
             } else {
-                gamePaused = true;
+                pausing = true;
                 StartCoroutine(Pause());
+            }
             }
         }
         //Moves the screen transition camera to the player at all times.

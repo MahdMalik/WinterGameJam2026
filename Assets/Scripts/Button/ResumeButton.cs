@@ -11,7 +11,7 @@ public class ResumeButton : MonoBehaviour
     
     public void ResumeGame()
     {
-        SceneManagerer.instance.Unpause();
+        SceneManagerer.instance.removePause();
         Debug.Log("Ok so this runs");
     }
 }

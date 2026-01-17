@@ -10,7 +10,7 @@ public class OptionsButton : MonoBehaviour
     }
     
     public void OpenOptions()
-    {
+    {        
         SceneManagerer.instance.VolumeBars();
         Debug.Log("Ok so this runs");
     }
