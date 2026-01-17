@@ -245,10 +245,11 @@ public class SceneManagerer : MonoBehaviour
 
 
     public void volumeSet(float slider) {
-        if (!volumeChanging) 
+        if (!volumeChanging) {
             volume = slider;
             PlaySFX("Click");
         }
+    }
 
     public void SFXvolumeSet(float slider2) {
         if (!volumeChanging) {
