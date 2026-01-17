@@ -10,7 +10,7 @@ public class Battery : MonoBehaviour
     public Image batterySlider;
     public TMP_Text batteryText;
 
-    public int maxBattery;
+    private int maxBattery;
 
     public static event Action OnPlayerDied;
 
@@ -28,6 +28,7 @@ public class Battery : MonoBehaviour
     // function to reset battery back to full
     void ResetBattery()
     {
+        maxBattery = Initializer.maxBattery;
         Initializer.batteryPower = maxBattery;
         batteryOut = false;
         // if we know the duration of the battery we want from the max,we can calculate this as so
