@@ -11,6 +11,7 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging;
     public bool gamePaused;
+    public bool goingToMain;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
@@ -131,16 +132,21 @@ public class SceneManagerer : MonoBehaviour
 
 
     private IEnumerator GoToNextScene() {
-        if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
-            yield return new WaitForSeconds(1.2f);
-        }
         Initializer.playerMoving = false;
         Initializer.worldFrozen = true;
         if (SceneManager.GetActiveScene().buildIndex == 1) {
             PlaySFX("Death");
+            goingToMain = false;
+        } else if (SceneManager.GetActiveScene().buildIndex == 0) {
+            PlaySFX("Click");
+            goingToMain = true;
         } else {
             PlaySFX("Click");
+            goingToMain = false;
+        }
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars());
+            yield return new WaitForSeconds(1.2f);
         }
         //Sets the screen transition on.
         Initial.GetComponent<Initializing>().Initialization();
@@ -170,23 +176,31 @@ public class SceneManagerer : MonoBehaviour
             PlayerObject = GameObject.Find("Player");
             yield return new WaitForSeconds(0.05f);
             Debug.Log("Trying to Find.");
-            if ((Initializer.PixelCamera != null) && (PlayerObject != null) || SceneManager.GetActiveScene().buildIndex != 1) {
+            if ((Initializer.PixelCamera != null) && ((PlayerObject != null) || !goingToMain)) {
                 k = 10;
+                Initial.GetComponent<Initializing>().Initialization();
             }
         }
         //Makes sure the transition camera is on and starts raising resolution again.
         Initializer.PixelatedPanel.SetActive(true);
         Initializer.PixelCamera.gameObject.SetActive(true);
-        Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        if (goingToMain) {
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        }
         for (int i = 27; i > 7; i--) {
             Initial.GetComponent<Initializing>().Initialization();
             AdjustRenderTextureSize((i * i), (i * i));
             yield return new WaitForSeconds(0.022f);
+        if (goingToMain) {
             Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        }        
         }
         for (int i = 41; i > 0; i--) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
+            if (goingToMain) {
+            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        } 
         }
         //Turns the transition off.
         Initial.GetComponent<Initializing>().Initialization();
