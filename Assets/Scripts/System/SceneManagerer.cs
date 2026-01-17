@@ -10,6 +10,7 @@ public class SceneManagerer : MonoBehaviour
 
     public float volume;
     public bool volumeChanging;
+    public bool gamePaused;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
@@ -101,13 +102,6 @@ public class SceneManagerer : MonoBehaviour
         }
         volumeBarsVisible = true;
     }
-    private IEnumerator Pause() {
-        pauseScreen = GameObject.Find("pauseScreen");
-        for (int i = 0; i < 40; i++) {
-        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 12.0f, pauseScreen.transform.position.z);
-        yield return new WaitForSeconds(0.03f);
-        }
-    }
     private IEnumerator BringOutBars() {
         for (int i = 0; i < 40; i++) {
         leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
@@ -117,6 +111,20 @@ public class SceneManagerer : MonoBehaviour
         volumeBarsVisible = false;
     }
 
+    private IEnumerator Pause() {
+        pauseScreen = GameObject.Find("pauseScreen");
+        for (int i = 0; i < 52; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 11.92f, pauseScreen.transform.position.z);
+        yield return new WaitForSeconds(0.03f);
+        }
+    }
+    private IEnumerator Unpause() {
+        pauseScreen = GameObject.Find("pauseScreen");
+        for (int i = 0; i < 52; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 11.92f, pauseScreen.transform.position.z);
+        yield return new WaitForSeconds(0.03f);
+        }
+    }
 
 
     private IEnumerator GoToNextScene() {
@@ -222,7 +230,13 @@ public class SceneManagerer : MonoBehaviour
             Next();
         }
         if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex == 1)) {
-            StartCoroutine(Pause());
+            if (gamePaused) {
+                gamePaused = false;
+                StartCoroutine(Unpause());
+            } else {
+                gamePaused = true;
+                StartCoroutine(Pause());
+            }
         }
         //Moves the screen transition camera to the player at all times.
         if (PlayerObject != null) {
