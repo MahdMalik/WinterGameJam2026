@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5280547
@@ -322,6 +326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 1866057106413581911, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5824395793972691231, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.471945
@@ -384,6 +392,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 1866057106413581911, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5824395793972691231, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.471945
@@ -451,6 +463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.471945
@@ -513,6 +529,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.471945
@@ -619,6 +639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -854,6 +878,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.528055
@@ -932,6 +960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 1866057106413581911, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5824395793972691231, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.471945
@@ -998,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpDownDoorLongest
       objectReference: {fileID: 0}
+    - target: {fileID: 4171372427480073741, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5883547524738146494, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.471945
@@ -1056,6 +1092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.528055
@@ -1162,6 +1202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1180,6 +1224,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.528055
@@ -1308,6 +1356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 1866057106413581911, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5824395793972691231, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.528053
@@ -1470,6 +1522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1532,6 +1588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1594,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1656,6 +1720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1674,6 +1742,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 1866057106413581911, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5824395793972691231, guid: 4f356ee84a92c7d4e9454b813de4f6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.471945
@@ -1780,6 +1852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1798,6 +1874,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.471945
@@ -2111,6 +2191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.528055
@@ -21215,6 +21299,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.471945
@@ -21515,6 +21603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpDownDoorLongest
       objectReference: {fileID: 0}
+    - target: {fileID: 4171372427480073741, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5883547524738146494, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.471945
@@ -21578,6 +21670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.528053
@@ -231433,6 +231529,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.471945
@@ -231539,6 +231639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -231629,6 +231733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpDownDoorLongest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4171372427480073741, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 5883547524738146494, guid: ff2d969f8fbbed24cae4de02fbf2c1a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.471945
@@ -231697,6 +231805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.471945
@@ -232233,6 +232345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -232251,6 +232367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 545335328}
     m_Modifications:
+    - target: {fileID: 4971636542139807142, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     - target: {fileID: 8062210500707988605, guid: 1d1a797b5a7d03a4eb48d960a3fdba69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.528053
@@ -232357,6 +232477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftRightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6689977694398834722, guid: 7e342a09f0e964b4bba487b1f5b7dd0e, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1912858125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
