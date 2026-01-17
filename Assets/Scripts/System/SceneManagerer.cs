@@ -9,11 +9,15 @@ public class SceneManagerer : MonoBehaviour
     
 
     public float volume;
-    public bool volumeChanging = true;
+    public bool volumeChanging;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
     [SerializeField] GameObject Initial;
+    public bool volumeBarsVisible = false;
+
+    [SerializeField] GameObject leftVolumeBar;
+    [SerializeField] GameObject rightVolumeBar;
 
     public float SetSFXVolume = 0.3f;
     public Sound[] SFXSounds;
@@ -42,7 +46,8 @@ public class SceneManagerer : MonoBehaviour
         }
         //Finds the music manager and player. Sets the screen transition to off and fades in music.
         MusicManagement = GameObject.Find("MusicManager");
-        PlayerObject = GameObject.Find("Player");
+        leftVolumeBar = GameObject.Find("VolumeChangingSlider");
+        rightVolumeBar = GameObject.Find("SFXVolumeChangingSlider");
         Initializer.PixelatedPanel.SetActive(false);
         Initializer.PixelCamera.gameObject.SetActive(false);
         Initializer.PixelCamera.Render();
@@ -76,6 +81,32 @@ public class SceneManagerer : MonoBehaviour
     public void Next() {
         StartCoroutine(GoToNextScene());
     }
+
+    public void VolumeBars() {
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars());
+        } else {
+            StartCoroutine(BringInBars());
+        }
+    }
+
+    private IEnumerator BringInBars() {
+        for (int i = 0; i < 40; i++) {
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - 4.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        yield return new WaitForSeconds(0.03f);
+        }
+        volumeBarsVisible = true;
+    }
+    private IEnumerator BringOutBars() {
+        for (int i = 0; i < 40; i++) {
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + 4.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        yield return new WaitForSeconds(0.03f);
+        }
+        volumeBarsVisible = false;
+    }
+
 
 
     private IEnumerator GoToNextScene() {
