@@ -11,6 +11,7 @@ public class SceneManagerer : MonoBehaviour
     public float volume;
     public bool volumeChanging;
     public bool gamePaused;
+    public bool goingToMain;
     public float currentVolume = 0.0f;
     [SerializeField] GameObject MusicManagement = null;
     [SerializeField] GameObject PlayerObject = null;
@@ -128,16 +129,21 @@ public class SceneManagerer : MonoBehaviour
 
 
     private IEnumerator GoToNextScene() {
-        if (volumeBarsVisible) {
-            StartCoroutine(BringOutBars());
-            yield return new WaitForSeconds(1.2f);
-        }
         Initializer.playerMoving = false;
         Initializer.worldFrozen = true;
         if (SceneManager.GetActiveScene().buildIndex == 1) {
             PlaySFX("Death");
+            goingToMain = false;
+        } else if (SceneManager.GetActiveScene().buildIndex == 0) {
+            PlaySFX("Click");
+            goingToMain = true;
         } else {
             PlaySFX("Click");
+            goingToMain = false;
+        }
+        if (volumeBarsVisible) {
+            StartCoroutine(BringOutBars());
+            yield return new WaitForSeconds(1.2f);
         }
         //Sets the screen transition on.
         Initial.GetComponent<Initializing>().Initialization();
@@ -167,7 +173,7 @@ public class SceneManagerer : MonoBehaviour
             PlayerObject = GameObject.Find("Player");
             yield return new WaitForSeconds(0.05f);
             Debug.Log("Trying to Find.");
-            if ((Initializer.PixelCamera != null) && (PlayerObject != null) || SceneManager.GetActiveScene().buildIndex != 1) {
+            if ((Initializer.PixelCamera != null) && (PlayerObject != null) || !goingToMain) {
                 k = 10;
             }
         }
