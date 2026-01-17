@@ -27,12 +27,16 @@ public static class Initializer
 
     public static float doorOpeningSpeed = 1f;
 
+    public static bool guidingArrow = false;
+
 
     public static Perk[] LoadPerks()
     {
-        WalkSpeedBoost perk1 = new WalkSpeedBoost(2, null, new Vector2(-73, 125), false);
-        FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(136, 279), false);
-        return new Perk[] {perk1, perk2};
+        WalkSpeedBoost perk1 = new WalkSpeedBoost(1, null, new Vector2(-73, 125), false);
+        FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(194, 279), false);
+        WalkSpeedBoost perk3 = new WalkSpeedBoost(1, perk2, new Vector2(461, 279), true);
+        GuidingArrow perk4 = new GuidingArrow(1, perk3, new Vector2(728, 279), false);
+        return new Perk[] {perk1, perk2, perk3, perk4};
     }
 
     public static Perk[] perks = LoadPerks();

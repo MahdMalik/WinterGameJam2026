@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Perk
 {
-    public string perkName;
+    public string perkNameGameObj;
     public string perkDesc;
     public int perkCost;
 
@@ -12,17 +12,17 @@ public abstract class Perk
     public Perk prevPerk;
     public Vector2 perkUiPos;
 
-    public bool upgradedVer;
+    public string perkNameDisplayed;
 
-    public Perk(string name, string desc, int cost, Perk prev, Vector2 pos, bool ifUpgrade)
+    public Perk(string name, string desc, int cost, Perk prev, Vector2 pos, bool ifUpgrade, string displayedName)
     {
-        perkName = name;
+        perkNameGameObj = $"{name}{(ifUpgrade ? "Upgraded" : "")}";
         perkDesc = desc;
         perkCost = cost;
         activated = false;
         prevPerk = prev;
         perkUiPos = pos;
-        upgradedVer = ifUpgrade;
+        perkNameDisplayed = displayedName + (ifUpgrade ? "  Upgraded" : "");
     }
 
     public bool CheckAvailableStatus()
