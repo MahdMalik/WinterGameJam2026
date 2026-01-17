@@ -9,7 +9,7 @@ public static class Initializer
     public static Camera PixelCamera;
     public static float batteryPower;
     public static int maxBattery = 100;
-    public static int numSecondsFromMax = 5;
+    public static int numSecondsFromMax = 50;
     public static float SFXVolume;
     public static bool worldFrozen;
     public static bool playerMoving;

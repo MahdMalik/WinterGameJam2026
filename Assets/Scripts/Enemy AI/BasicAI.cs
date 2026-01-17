@@ -5,9 +5,8 @@ using UnityEngine;
 public class BasicAI : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;           // How fast the enemy moves
-    public float chargeSpeed = 8f;         // Speed when charging at player
-    public float aggroRange = 8f;          // Distance to detect player and start charging
+    public float chargeSpeed = .01f;         // Speed when charging at player
+    public float aggroRange = 1f;          // Distance to detect player and start charging
     public float stopDistance = 0.5f;      // Stop charging when this close to player
 
     [Header("Collision Settings")]
@@ -70,7 +69,7 @@ public class BasicAI : MonoBehaviour
             return;
 
         // Determine which speed to use
-        float currentSpeed = isCharging ? chargeSpeed : moveSpeed;
+        float currentSpeed = chargeSpeed;
 
         Vector2 direction = (player.position - transform.position).normalized;
 
