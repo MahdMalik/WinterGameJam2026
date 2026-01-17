@@ -631,6 +631,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77f9b0ff38da5c49a7c92c826c8507b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &555066507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6401505107902488575, guid: f6fac9ef927de1f44832f9487ede47e0, type: 3}
+  m_PrefabInstance: {fileID: 1167433948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2336ba49dcec649b1d9e65334fa733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &670111753
 GameObject:
   m_ObjectHideFlags: 0
@@ -68180,23 +68191,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 555066507}
+    - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: volumeSet
       objectReference: {fileID: 0}
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: 
+      value: SceneManagerer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5524498208733949364, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6682835179842629242, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_Enabled
