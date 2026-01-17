@@ -27,7 +27,7 @@ public abstract class Perk
     
     public bool PerkPurchase()
     {
-        if(Initializer.perkPoints >= perkCost && (prevPerk == null || prevPerk.activated == true) )
+        if(!activated && Initializer.perkPoints >= perkCost && (prevPerk == null || prevPerk.activated == true) )
         {
             Debug.Log("Purchase yes!");
             activated = true;

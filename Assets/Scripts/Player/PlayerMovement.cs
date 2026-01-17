@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject interactSquare;
     [SerializeField] private BoxCollider2D interactHitbox;
-    [SerializeField] private float PlayerSpeed;
     [SerializeField] private float objectUseSpeed;
     [SerializeField] private SpriteRenderer PlayerSprite;
     [SerializeField] Animator playerAnim;
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private float lastUpdate;
 
     private Sprite[] movementSprites;
-
     // make sure that when the battery dies out, we restart the game (for now; normally
     // there'd be a game over screen)
     void Start()
@@ -32,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
         movementSprites = new Sprite[] {Up, Right, Down, Left};
         lastUpdate = Time.time;
 
-        PlayerVars.secondsSurvived = 0;
-        PlayerVars.numKillsThisRound = 0;
-        PlayerVars.maxDistFromCenter = 0;
+        Initializer.secondsSurvived = 0;
+        Initializer.numKillsThisRound = 0;
+        Initializer.maxDistFromCenter = 0;
         Initializer.pointsLastRun = 0;
     }
 
@@ -42,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Movement
         if (Initializer.worldFrozen == false) {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * PlayerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * PlayerSpeed);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * Initializer.playerSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * Initializer.playerSpeed);
         } else {
             rb.velocity = new Vector2(0.0f, 0.0f);
         }
@@ -66,41 +64,41 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnim.SetBool("Walking", true);
             Initializer.playerMoving = true;
-            if(PlayerVars.canTurnInteract)
+            if(Initializer.canTurnInteract)
             {
                 //Facing Logic
                 if(rb.velocity.x == 0 && rb.velocity.y > 0) {
-                    PlayerVars.PlayerFacing = 1;
+                    Initializer.PlayerFacing = 1;
                     interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
                 }//Up
                 if (rb.velocity.x > 0) {
-                    PlayerVars.PlayerFacing = 2;
+                    Initializer.PlayerFacing = 2;
                     interactSquare.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y + 0.5f, transform.position.z);
                 }//Right
                 if (rb.velocity.x == 0 && rb.velocity.y < 0) {
-                    PlayerVars.PlayerFacing = 3;
+                    Initializer.PlayerFacing = 3;
                     interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
                 }//Down
                 if (rb.velocity.x < 0) {
-                    PlayerVars.PlayerFacing = 4;
+                    Initializer.PlayerFacing = 4;
                     interactSquare.transform.position = new Vector3(transform.position.x - 0.8f, transform.position.y + 0.5f, transform.position.z);
                 }//Left
 
-                playerAnim.SetInteger("WalkingDirection", PlayerVars.PlayerFacing);
-                PlayerSprite.sprite = movementSprites[PlayerVars.PlayerFacing - 1];
+                playerAnim.SetInteger("WalkingDirection", Initializer.PlayerFacing);
+                PlayerSprite.sprite = movementSprites[Initializer.PlayerFacing - 1];
             }
         }
         float distFromCenter = (float) Math.Sqrt( Math.Pow(Math.Abs(transform.position.x), 2) + Math.Pow(Math.Abs(transform.position.y), 2));
-        if(distFromCenter > PlayerVars.maxDistFromCenter)
+        if(distFromCenter > Initializer.maxDistFromCenter)
         {
             // Debug.Log($"They went farther! At dist {distFromCenter}");
-            PlayerVars.maxDistFromCenter = distFromCenter;
+            Initializer.maxDistFromCenter = distFromCenter;
         }
 
         // update every secohnd their time survived 
         if(lastUpdate > 1)
         {
-            PlayerVars.secondsSurvived += 1;
+            Initializer.secondsSurvived += 1;
             lastUpdate = 0;
         }
         lastUpdate += Time.deltaTime;
@@ -110,13 +108,13 @@ public class PlayerMovement : MonoBehaviour
     void ResetPlayer()
     {
         // Points system: Math.floor[ (time survived / 60) + (numEnemiesKilled / 2) + (maxDistFromCenter / 100) ] 
-        Debug.Log(PlayerVars.secondsSurvived / 60.0f);
-        Debug.Log(PlayerVars.numKillsThisRound / 2.0f);
-        Debug.Log(PlayerVars.maxDistFromCenter / 1000.0f);
+        Debug.Log(Initializer.secondsSurvived / 60.0f);
+        Debug.Log(Initializer.numKillsThisRound / 2.0f);
+        Debug.Log(Initializer.maxDistFromCenter / 1000.0f);
         Initializer.pointsLastRun = (int) Math.Ceiling(
-          PlayerVars.secondsSurvived / 60.0f  +
-          PlayerVars.numKillsThisRound / 2.0f +
-          PlayerVars.maxDistFromCenter / 1000.0f
+          Initializer.secondsSurvived / 60.0f  +
+          Initializer.numKillsThisRound / 2.0f +
+          Initializer.maxDistFromCenter / 1000.0f
         );
         Initializer.perkPoints += Initializer.pointsLastRun;
         

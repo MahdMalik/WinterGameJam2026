@@ -12,6 +12,16 @@ public class SkillTree : MonoBehaviour
 
     private bool perkMenuOpen;
 
+    void UpdateLastPoints()
+    {
+        pointsLastRound.text = $"POINTS OBTAINED LAST ROUND: {Initializer.pointsLastRun}";
+    }
+
+    void UpdateCurrentPoints()
+    {
+        currentPoints.text = $"CURRENT POINTS: {Initializer.perkPoints}";
+    }
+
     void AdjustBoughtText(Transform mainPerkObject, bool boughtStatus)
     {
         mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = boughtStatus ? "Bought" : "Buy";
@@ -22,8 +32,8 @@ public class SkillTree : MonoBehaviour
     {
         perkMenuOpen = false;
 
-        pointsLastRound.text = $"POINTS OBTAINED LAST ROUND: {Initializer.pointsLastRun}";
-        currentPoints.text = $"CURRENT POINTS: {Initializer.perkPoints}";
+        UpdateLastPoints();
+        UpdateCurrentPoints();
 
         foreach(Perk thePerk in Initializer.perks)
         {
@@ -75,6 +85,7 @@ public class SkillTree : MonoBehaviour
                 {
                     PerkDataClosed(buttonPressed);
                     AdjustBoughtText(buttonPressed.transform.parent.parent, true);
+                    UpdateCurrentPoints();
                 }
                 break;
             }
