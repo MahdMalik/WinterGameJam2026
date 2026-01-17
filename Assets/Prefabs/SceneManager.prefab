@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: daf32ff6aaec00b4ab2ff6b4624cbeaa, type: 2}
+  m_Texture: {fileID: 8400000, guid: c7867dd5c21cf5741ab6b778bf97e4a2, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -146,7 +146,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: daf32ff6aaec00b4ab2ff6b4624cbeaa, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: c7867dd5c21cf5741ab6b778bf97e4a2, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6876cd001958685408fa1f55049668dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RTINIT: {fileID: 8400000, guid: daf32ff6aaec00b4ab2ff6b4624cbeaa, type: 2}
+  RTINIT: {fileID: 8400000, guid: c7867dd5c21cf5741ab6b778bf97e4a2, type: 2}
   PixelatedPanelINIT: {fileID: 1402153221856272238}
   PixelCameraINIT: {fileID: 1940725829977394716}
 --- !u!1 &8261336290712036387
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.3
   volumeChanging: 1
+  gamePaused: 0
   currentVolume: 0
   MusicManagement: {fileID: 0}
   PlayerObject: {fileID: 0}
@@ -467,7 +468,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8915215692761386677}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
