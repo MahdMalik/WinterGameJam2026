@@ -267,6 +267,7 @@ MonoBehaviour:
   MusicManagement: {fileID: 0}
   PlayerObject: {fileID: 0}
   Initial: {fileID: 4720330016810318286}
+  PixelCanvas: {fileID: 8915215692761386677}
   volumeBarsVisible: 0
   leftVolumeBar: {fileID: 0}
   rightVolumeBar: {fileID: 0}
