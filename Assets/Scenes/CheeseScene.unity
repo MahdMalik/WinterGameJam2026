@@ -67650,10 +67650,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2769014098845009294, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
-      propertyPath: numSecondsFromMax
-      value: 500
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
