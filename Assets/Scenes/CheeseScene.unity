@@ -67638,9 +67638,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1478445431695502677, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478445431695502677, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828648616957865454, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828648616957865454, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828648616957865454, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2017852444975111826, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
       propertyPath: m_Name
       value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521520832433332208, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521520832433332208, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942066928916751454, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -330
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682835179842629242, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019152907085709067, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019152907085709067, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019152907085709067, guid: 4bd007baa2f38e140a31666b3a75b014, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67785,7 +67833,6 @@ MonoBehaviour:
   rb: {fileID: 1912858128}
   interactSquare: {fileID: 83666243}
   interactHitbox: {fileID: 83666244}
-  PlayerSpeed: 200
   objectUseSpeed: 1
   PlayerSprite: {fileID: 1912858126}
   playerAnim: {fileID: 1912858131}
