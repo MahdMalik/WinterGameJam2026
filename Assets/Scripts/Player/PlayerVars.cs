@@ -8,5 +8,8 @@ public static class PlayerVars
 {
     public static int PlayerFacing = 3;
     public static bool canTurnInteract = true;
+    public static int numKillsThisRound = 0;
+    public static float maxDistFromCenter = 0;
+    public static int secondsSurvived = 0;
 
 }

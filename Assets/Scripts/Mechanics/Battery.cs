@@ -10,11 +10,7 @@ public class Battery : MonoBehaviour
     public Image batterySlider;
     public TMP_Text batteryText;
 
-    private int maxBattery;
-
     public static event Action OnPlayerDied;
-
-    public int numSecondsFromMax;
     private float decreasePerSec;
 
     private bool batteryOut;
@@ -28,11 +24,11 @@ public class Battery : MonoBehaviour
     // function to reset battery back to full
     void ResetBattery()
     {
-        maxBattery = Initializer.maxBattery;
-        Initializer.batteryPower = maxBattery;
+        Debug.Log($"The battery was {Initializer.maxBattery}");
+        Initializer.batteryPower = Initializer.maxBattery;
         batteryOut = false;
         // if we know the duration of the battery we want from the max,we can calculate this as so
-        decreasePerSec = (float) maxBattery / numSecondsFromMax;
+        decreasePerSec = (float) Initializer.maxBattery / Initializer.numSecondsFromMax;
     }
 
     // Update is called once per frame
@@ -62,16 +58,16 @@ public class Battery : MonoBehaviour
             OnPlayerDied.Invoke();
         }
         // change UI accordingly
-        batterySlider.transform.localScale = new Vector3(Initializer.batteryPower / maxBattery, batterySlider.transform.localScale.y, batterySlider.transform.localScale.z);
-        batteryText.text = $"{Mathf.CeilToInt(Initializer.batteryPower / maxBattery * 100)}%";
+        batterySlider.transform.localScale = new Vector3(Initializer.batteryPower / Initializer.maxBattery, batterySlider.transform.localScale.y, batterySlider.transform.localScale.z);
+        batteryText.text = $"{Mathf.CeilToInt(Initializer.batteryPower / Initializer.maxBattery * 100)}%";
     }
 
     public void RestoreBattery(float restoreAmount)
     {
         Initializer.batteryPower += restoreAmount;
-        if(Initializer.batteryPower > maxBattery)
+        if(Initializer.batteryPower > Initializer.maxBattery)
         {
-            Initializer.batteryPower = maxBattery;
+            Initializer.batteryPower = Initializer.maxBattery;
         }
     }
 }

@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerAnim;
     [SerializeField] GameObject SceneManagement = null;
 
+    private float lastUpdate;
+
     private Sprite[] movementSprites;
 
     // make sure that when the battery dies out, we restart the game (for now; normally
@@ -28,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
         SceneManagement = GameObject.Find("SceneManager");
         Battery.OnPlayerDied += ResetPlayer;
         movementSprites = new Sprite[] {Up, Right, Down, Left};
+        lastUpdate = Time.time;
+
+        PlayerVars.secondsSurvived = 0;
+        PlayerVars.numKillsThisRound = 0;
+        PlayerVars.maxDistFromCenter = 0;
+        Initializer.pointsLastRun = 0;
     }
 
     void FixedUpdate()
@@ -81,13 +89,32 @@ public class PlayerMovement : MonoBehaviour
                 playerAnim.SetInteger("WalkingDirection", PlayerVars.PlayerFacing);
                 PlayerSprite.sprite = movementSprites[PlayerVars.PlayerFacing - 1];
             }
+        }
+        float distFromCenter = (float) Math.Sqrt( Math.Pow(Math.Abs(transform.position.x), 2) + Math.Pow(Math.Abs(transform.position.y), 2));
+        if(distFromCenter > PlayerVars.maxDistFromCenter)
+        {
+            Debug.Log("They went farther!");
+            PlayerVars.maxDistFromCenter = distFromCenter;
+        }
 
+        // update every secohnd their max position and 
+        if(lastUpdate > 1)
+        {
+            PlayerVars.secondsSurvived += 1;
         }
     }
 
     // resets the player when a new run starts
     void ResetPlayer()
     {
+        // Points system: Math.floor[ (time survived / 60) + (numEnemiesKilled / 2) + (maxDistFromCenter / 100) ] 
+        Initializer.pointsLastRun = (int) Math.Floor(
+          PlayerVars.secondsSurvived / 60.0f  +
+          PlayerVars.numKillsThisRound / 2.0f +
+          PlayerVars.maxDistFromCenter / 1000.0f
+        );
+        Initializer.perkPoints += Initializer.pointsLastRun;
+        
         StartCoroutine(DeathAnim());
     }
     IEnumerator DeathAnim() {
