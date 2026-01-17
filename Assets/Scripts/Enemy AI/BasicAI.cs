@@ -12,11 +12,12 @@ public class BasicAI : MonoBehaviour
 
     [Header("Collision Settings")]
     public LayerMask wallLayers;           // Which layers count as walls
-    public float wallCheckDistance = 0.6f; // Raycast length to detect walls
+    public float wallCheckDistance = 1f;   // Raycast length to detect walls
     public Vector2 wallCheckOffset = Vector2.zero; // Offset raycast origin if needed
-    public int circularRayCount = 8;       // Number of rays in 360° check
+    public int circularRayCount = 16;      // Number of rays in 360° check
     public bool useCircularDetection = true; // Use 360° circular wall detection
     public bool debugWallRay = false;      // Draw rays in Scene view for debugging
+    private Vector2 lastClearDirection = Vector2.right; // Fallback direction when trapped
 
     [Header("Visual Settings")]
     public bool flipSpriteX = true;        // Flip sprite when moving left
@@ -71,10 +72,13 @@ public class BasicAI : MonoBehaviour
             Vector2 bestDirection = FindClearPath(direction);
             if(bestDirection == Vector2.zero)
             {
-                // No clear path found, stop
-                if(rb != null)
-                    rb.velocity = Vector2.zero;
-                return;
+                // All directions blocked - use last known clear direction to escape
+                bestDirection = lastClearDirection;
+            }
+            else
+            {
+                // Save this clear direction for emergencies
+                lastClearDirection = bestDirection;
             }
             direction = bestDirection;
         }
@@ -127,8 +131,9 @@ public class BasicAI : MonoBehaviour
     {
         Vector2 origin = (Vector2)transform.position + wallCheckOffset;
         float angleStep = 360f / circularRayCount;
+        float checkDistance = wallCheckDistance;
         
-        // First check preferred direction (towards player)
+        // First check preferred direction (towards player) with standard distance
         if(!IsWallAhead(preferredDirection))
         {
             return preferredDirection;
@@ -146,12 +151,12 @@ public class BasicAI : MonoBehaviour
                 Mathf.Sin(angle * Mathf.Deg2Rad)
             );
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, wallCheckDistance, wallLayers);
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, checkDistance, wallLayers);
             
             if(debugWallRay)
             {
                 Color rayColor = hit.collider != null ? Color.red : Color.yellow;
-                Debug.DrawRay(origin, direction * wallCheckDistance, rayColor);
+                Debug.DrawRay(origin, direction * checkDistance, rayColor);
             }
 
             // If this direction is clear
@@ -168,7 +173,30 @@ public class BasicAI : MonoBehaviour
             }
         }
 
-        // Return best direction found, or zero if all blocked
+        // If no clear path found, try with shorter distance (might be trapped right against door)
+        if(bestDirection == Vector2.zero)
+        {
+            float shortDistance = checkDistance * 0.3f; // Check very close
+            for(int i = 0; i < circularRayCount; i++)
+            {
+                float angle = i * angleStep;
+                Vector2 direction = new Vector2(
+                    Mathf.Cos(angle * Mathf.Deg2Rad),
+                    Mathf.Sin(angle * Mathf.Deg2Rad)
+                );
+
+                RaycastHit2D hit = Physics2D.Raycast(origin, direction, shortDistance, wallLayers);
+                
+                if(hit.collider == null)
+                {
+                    // Found escape route, prioritize moving away from player to disengage
+                    bestDirection = direction;
+                    break; // Take first available escape
+                }
+            }
+        }
+
+        // Return best direction found, or zero if completely trapped
         return bestDirection;
     }
 
