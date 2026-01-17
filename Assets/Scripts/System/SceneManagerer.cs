@@ -62,6 +62,7 @@ public class SceneManagerer : MonoBehaviour
         Initializer.PixelCamera.Render();
         Initializer.playerMoving = false;
         Initializer.worldFrozen = false;
+        PlayerObject = GameObject.Find("Player");
         StartCoroutine(FadeInMusic());
     }
     
@@ -128,17 +129,11 @@ public class SceneManagerer : MonoBehaviour
         for (int i = 27; i > 7; i--) {
             Initial.GetComponent<Initializing>().Initialization();
             AdjustRenderTextureSize((i * i), (i * i));
-            yield return new WaitForSeconds(0.022f);
-        if (goingToMain) {
-            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
-        }        
+            yield return new WaitForSeconds(0.022f);      
         }
         for (int i = 41; i > 0; i--) {
             AdjustRenderTextureSize(i, i);
             yield return new WaitForSeconds(0.045f);
-            if (goingToMain) {
-            Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
-        } 
         }
         //Turns the transition off.
         Initial.GetComponent<Initializing>().Initialization();
