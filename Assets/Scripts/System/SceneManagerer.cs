@@ -100,34 +100,36 @@ public class SceneManagerer : MonoBehaviour
 
     private IEnumerator BringInBars() {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - 4.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x + 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x - 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = true;
     }
     private IEnumerator BringOutBars() {
         for (int i = 0; i < 40; i++) {
-        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 4.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
-        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + 4.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
+        leftVolumeBar.transform.position = new Vector3(leftVolumeBar.transform.position.x - 10.0f, leftVolumeBar.transform.position.y, leftVolumeBar.transform.position.z);
+        rightVolumeBar.transform.position = new Vector3(rightVolumeBar.transform.position.x + 10.0f, rightVolumeBar.transform.position.y, rightVolumeBar.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
         volumeBarsVisible = false;
     }
 
     private IEnumerator Pause() {
+        Initializer.worldFrozen = true;
         pauseScreen = GameObject.Find("pauseScreen");
-        for (int i = 0; i < 52; i++) {
-        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 11.92f, pauseScreen.transform.position.z);
+        for (int i = 0; i < 75; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y + 20.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
     }
     private IEnumerator Unpause() {
         pauseScreen = GameObject.Find("pauseScreen");
-        for (int i = 0; i < 52; i++) {
-        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 11.92f, pauseScreen.transform.position.z);
+        for (int i = 0; i < 75; i++) {
+        pauseScreen.transform.position = new Vector3(pauseScreen.transform.position.x, pauseScreen.transform.position.y - 20.0f, pauseScreen.transform.position.z);
         yield return new WaitForSeconds(0.03f);
         }
+        Initializer.worldFrozen = false;
     }
 
 

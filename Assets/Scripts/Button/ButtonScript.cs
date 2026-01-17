@@ -14,9 +14,4 @@ public class ButtonScript : MonoBehaviour
         SceneManagerer.instance.Next();
         Debug.Log("Ok so this runs");
     }
-
-    public void Test()
-    {
-        Debug.Log("Button works");
-    }
 }
