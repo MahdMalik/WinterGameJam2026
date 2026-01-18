@@ -143,13 +143,13 @@ public class PlayerMovement : MonoBehaviour
     void ResetPlayer()
     {
         // Points system: Math.floor[ (time survived / 60) + (numEnemiesKilled / 2) + (maxDistFromCenter / 100) ] 
-        Debug.Log(Initializer.secondsSurvived / 60.0f);
-        Debug.Log(Initializer.numKillsThisRound / 2.0f);
-        Debug.Log(Initializer.maxDistFromCenter / 1000.0f);
+        Debug.Log(Initializer.secondsSurvived / 40.0f);
+        Debug.Log(Initializer.numKillsThisRound / 4.0f);
+        Debug.Log(6 * Initializer.maxDistFromCenter / 100.0f);
         Initializer.pointsLastRun = (int) Math.Ceiling(
-          Initializer.secondsSurvived / 60.0f  +
-          Initializer.numKillsThisRound / 2.0f +
-          Initializer.maxDistFromCenter / 1000.0f
+          Initializer.secondsSurvived / 40.0f  +
+          Initializer.numKillsThisRound / 4.0f +
+          6 * Initializer.maxDistFromCenter / 100.0f
         );
         Initializer.perkPoints += Initializer.pointsLastRun;
         

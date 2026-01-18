@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GuidingArrow : Perk
 {
-    public GuidingArrow(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("GuidingArrow", "Reveals An Arrow (At Start) Towards The Exist", cost, prev, pos, upgradedVer, "Guided Arrow")
+    public GuidingArrow(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("GuidingArrow", "REVEALS AN ARROW (AT THE START) TOWARDS THE EXIT", cost, prev, pos, upgradedVer, "GUIDED ARROW")
     {
     }
 
