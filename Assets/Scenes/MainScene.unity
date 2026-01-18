@@ -1990,7 +1990,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 351283599}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &372256516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213830,7 +213830,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 934888399}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1 &959680276
 GameObject:
   m_ObjectHideFlags: 0
@@ -214182,7 +214182,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 959680278}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &968926107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234589,7 +234589,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1269954857}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &1289096909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235761,7 +235761,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1416303617}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1 &1422815483
 GameObject:
   m_ObjectHideFlags: 0
@@ -236113,7 +236113,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1422815485}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &1424811367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237137,7 +237137,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1673228024}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &1748012154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238072,7 +238072,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1904569675}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1 &1905110131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5826698805091397592, guid: 522576baba6ffff4ea2f592e09775243, type: 3}
@@ -238738,7 +238738,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1938160862}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1 &1940443909
 GameObject:
   m_ObjectHideFlags: 0
@@ -239090,7 +239090,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7c69fcc8bb92fef4692e249c67d6a3cf, type: 3}
   ItemSource: {fileID: 1940443911}
   theBattery: {fileID: 378597920}
-  batteryAddCount: 20
+  batteryAddCount: 5
 --- !u!1001 &1946791121
 PrefabInstance:
   m_ObjectHideFlags: 0
