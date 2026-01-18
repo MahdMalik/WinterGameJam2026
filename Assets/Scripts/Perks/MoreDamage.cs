@@ -11,6 +11,6 @@ public class MoreDamage : Perk
     
     protected override void ActivatePerk()
     {
-        Initializer.playerDamage *= 2;
+        Initializer.playerDamage *= 1.5f;
     }
 }

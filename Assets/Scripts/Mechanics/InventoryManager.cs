@@ -155,7 +155,7 @@ public class InventoryManager : MonoBehaviour
         {
             if(Initializer.itemsUsePower)
             {
-                theBattery.AlterBattery(-3);
+                theBattery.AlterBattery(-1.5f);
             }
             inventory[selectedSlot].Activate();
             // Debug.Log(inventory[selectedSlot]);
