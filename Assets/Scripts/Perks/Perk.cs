@@ -22,7 +22,7 @@ public abstract class Perk
         activated = false;
         prevPerk = prev;
         perkUiPos = pos;
-        perkNameDisplayed = displayedName + (ifUpgrade ? "  Upgraded" : "");
+        perkNameDisplayed = displayedName + (ifUpgrade ? "\nPLUS" : "");
     }
 
     public bool CheckAvailableStatus()
