@@ -23,7 +23,8 @@ public class BasicAI : MonoBehaviour
     public bool flipSpriteX = true;        // Flip sprite when moving left
 
     private Transform player;              // Reference to the player's transform
-    private Rigidbody2D rb;                // For physics-based movement (optional)
+    private Rigidbody2D rb;    
+    public GameObject Batteri;                        // For physics-based movement (optional)
 
     public GameObject playerObj;          // Reference to the player GameObject
 
@@ -278,6 +279,7 @@ public class BasicAI : MonoBehaviour
             if(healthPoints <= 0)
             {
                 Initializer.numKillsThisRound += 1;
+                Batteri.GetComponent<Battery>().AlterBattery(5.0f);
                 gameObject.SetActive(false);
             }
             else
