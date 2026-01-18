@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BasicAI : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class BasicAI : MonoBehaviour
     public bool flipSpriteX = true;        // Flip sprite when moving left
 
     private Transform player;              // Reference to the player's transform
-    private Rigidbody2D rb;                // For physics-based movement (optional)
+    private Rigidbody2D rb;    
+    public GameObject Batteri;                        // For physics-based movement (optional)
 
     public GameObject playerObj;          // Reference to the player GameObject
 
@@ -38,6 +40,10 @@ public class BasicAI : MonoBehaviour
     private bool inKnockback;
     private float knockbackTime;
     public float counterForKnockback = 0.1f;
+
+    public Sound[] SFXSounds;
+    [SerializeField] private AudioSource SFXSource;
+    [SerializeField] private bool seeingSoundCooldown;
 
     void Start()
     {
@@ -62,6 +68,7 @@ public class BasicAI : MonoBehaviour
 
     void Update()
     {
+        SFXSource.volume = Initializer.SFXVolume;
         if(player == null)
             return;
         
@@ -84,6 +91,11 @@ public class BasicAI : MonoBehaviour
             if(distanceToPlayer < aggroRange)
             {
                 MoveTowardsPlayer(distanceToPlayer);
+                if (!seeingSoundCooldown) {
+                    seeingSoundCooldown = true;
+                    StartCoroutine(SeesRepeat());
+                    PlaySFX("Sees");
+                }
             }
         }
         if(hasBeenHit)
@@ -96,6 +108,20 @@ public class BasicAI : MonoBehaviour
                     1);
                 iframeTime = 0;
             }
+        }
+    }
+
+    IEnumerator SeesRepeat() {
+        yield return new WaitForSeconds(1.0f);
+        seeingSoundCooldown = false;
+    }
+    public void PlaySFX(string name) {
+        Sound s = Array.Find(SFXSounds, x => x.name == name);
+        if(s == null) {
+            Debug.Log("No Sounds");
+        } else {
+            SFXSource.clip = s.clip;
+            SFXSource.Play();
         }
     }
 
@@ -278,11 +304,14 @@ public class BasicAI : MonoBehaviour
             if(healthPoints <= 0)
             {
                 Initializer.numKillsThisRound += 1;
+                PlaySFX("Dead");
+                Batteri.GetComponent<Battery>().AlterBattery(5.0f);
                 gameObject.SetActive(false);
             }
             else
             {
                 inKnockback = true;
+                PlaySFX("Hit");
                 knockbackUnitDirection = (transform.position - player.position).normalized * knockBackFactor;
                 GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,
                     0.5f);
