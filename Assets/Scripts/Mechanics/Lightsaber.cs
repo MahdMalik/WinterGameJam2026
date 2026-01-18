@@ -58,7 +58,7 @@ public class Lightsaber : Item
     }
 
         // when the item is touched by the player
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         // so it can get a bit... quirky if you disable the bullet when this is called
         Debug.Log($"name was {other.gameObject.name}");
@@ -70,5 +70,7 @@ public class Lightsaber : Item
         {
             other.gameObject.GetComponent<BasicAI>().WasHit(0.25f);
         }
+
+        base.OnTriggerEnter2D(other);
     }
 }
