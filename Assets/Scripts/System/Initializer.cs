@@ -32,6 +32,8 @@ public static class Initializer
     public static float useSpeedMultiplier = 1f;
     public static float cooldownMultiplier = 1f;
 
+    public static int playerDamage = 1;
+
 
     public static Perk[] LoadPerks()
     {

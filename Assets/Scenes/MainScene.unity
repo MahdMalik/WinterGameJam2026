@@ -231796,7 +231796,7 @@ GameObject:
   - component: {fileID: 1615990916}
   - component: {fileID: 1615990917}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231828,6 +231828,9 @@ MonoBehaviour:
   debugWallRay: 1
   flipSpriteX: 1
   playerObj: {fileID: 1912858125}
+  healthPoints: 5
+  timeCounterForInvincibility: 1
+  counterForKnockback: 0.1
 --- !u!212 &1615990913
 SpriteRenderer:
   m_ObjectHideFlags: 0

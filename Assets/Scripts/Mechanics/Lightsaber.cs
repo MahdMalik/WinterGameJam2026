@@ -56,4 +56,19 @@ public class Lightsaber : Item
         base.Activate();
         Initializer.batteryPower -= energyUse;
     }
+
+        // when the item is touched by the player
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // so it can get a bit... quirky if you disable the bullet when this is called
+        Debug.Log($"name was {other.gameObject.name}");
+        if(other.gameObject.name == "Tilemap" || (other.gameObject.name == "DoorHitbox" && other.gameObject.GetComponentInParent<Door>().GetDoorStatus() != 1))
+        {
+            OnEndActivation();
+        }
+        else if(other.gameObject.name == "Enemy")
+        {
+            other.gameObject.GetComponent<BasicAI>().WasHit(0.25f);
+        }
+    }
 }

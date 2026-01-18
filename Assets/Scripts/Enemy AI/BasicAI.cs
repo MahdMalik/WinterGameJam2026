@@ -29,10 +29,24 @@ public class BasicAI : MonoBehaviour
 
     private float enemyRadius;
 
+    public int healthPoints = 5;
+    private bool hasBeenHit;
+    public float timeCounterForInvincibility = 1.0f;
+    private float iframeTime;
+
+    private Vector2 knockbackUnitDirection;
+    private bool inKnockback;
+    private float knockbackTime;
+    public float counterForKnockback = 0.1f;
+
     void Start()
     {
         // Try to find the player
         enemyRadius = GetComponent<CircleCollider2D>().radius;
+        hasBeenHit = false;
+        inKnockback = false;
+        iframeTime = 0;
+        knockbackTime = 0;
 
         if(playerObj != null)
         {
@@ -51,13 +65,37 @@ public class BasicAI : MonoBehaviour
         if(player == null)
             return;
         
-        // Calculate distance between enemy and player
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        // Check if player is in aggro range
-        if(distanceToPlayer < aggroRange)
+        if(inKnockback)
         {
-            MoveTowardsPlayer(distanceToPlayer);
+            knockbackTime += Time.deltaTime;
+            rb.MovePosition(transform.position + new Vector3(knockbackUnitDirection.x, knockbackUnitDirection.y));
+            if(knockbackTime > counterForKnockback)
+            {
+                inKnockback = false;
+                knockbackTime = 0;
+            }
+        }
+        else
+        {
+            // Calculate distance between enemy and player
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+            // Check if player is in aggro range
+            if(distanceToPlayer < aggroRange)
+            {
+                MoveTowardsPlayer(distanceToPlayer);
+            }
+        }
+        if(hasBeenHit)
+        {
+            iframeTime += Time.deltaTime;
+            if(iframeTime > timeCounterForInvincibility)
+            {
+                hasBeenHit = false;
+                GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,
+                    1);
+                iframeTime = 0;
+            }
         }
     }
 
@@ -226,6 +264,28 @@ public class BasicAI : MonoBehaviour
             {
                 // Face right
                 transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
+
+    public void WasHit(float knockBackFactor)
+    {
+        if(!hasBeenHit)
+        {
+            Debug.Log("We've been hit!");
+            hasBeenHit = true;
+            healthPoints -= Initializer.playerDamage;
+            if(healthPoints <= 0)
+            {
+                Initializer.numKillsThisRound += 1;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                inKnockback = true;
+                knockbackUnitDirection = (transform.position - player.position).normalized * knockBackFactor;
+                GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,
+                    0.5f);
             }
         }
     }
