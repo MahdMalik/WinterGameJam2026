@@ -151,7 +151,7 @@ public abstract class Item : MonoBehaviour
     }
 
     // when the item is touched by the player
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         // make sure the player touched it and that it isn't already in their inventory
         if (other.gameObject.name != "Player" || inInventory || usedUp)
