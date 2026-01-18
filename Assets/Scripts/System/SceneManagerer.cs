@@ -319,10 +319,7 @@ public class SceneManagerer : MonoBehaviour
         MusicManagement = GameObject.Find("MusicManager");
         MusicManagement.GetComponent<AudioManager>().setVolume(currentVolume);
         //If P is pressed, go to the next scene. Used instead of a button because buttons are stupid.
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Next();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex == 1)) {
+        if (Input.GetKeyDown(KeyCode.P) && (SceneManager.GetActiveScene().buildIndex == 1)) {
             if (!pausing) {
                 if (gamePaused) {
                 pausing = true;
