@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SkillTree : MonoBehaviour
 {
@@ -21,9 +22,11 @@ public class SkillTree : MonoBehaviour
         currentPoints.text = $"CURRENT POINTS: {Initializer.perkPoints}";
     }
 
-    void AdjustBoughtText(Transform mainPerkObject, Perk thePerk)
+    void AdjustBoughtTextAndImageBrightness(Transform mainPerkObject, Perk thePerk)
     {
         mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = thePerk.activated ? "BOUGHT" : thePerk.CheckAvailableStatus() ? "BUY" : "LOCKED";
+        float brightnessModifier = thePerk.activated ? 1 : thePerk.CheckAvailableStatus() ? 0.55f : .15f;
+        mainPerkObject.GetComponent<Image>().color = new Color(brightnessModifier, brightnessModifier, brightnessModifier, 1);
     }
     
     // Start is called before the first frame update
@@ -46,7 +49,7 @@ public class SkillTree : MonoBehaviour
             childObject.GetChild(0).Find("PerkDesc").GetComponent<TextMeshProUGUI>().text = thePerk.perkDesc;
             childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"COST: {thePerk.perkCost} POINTS";
             
-            AdjustBoughtText(childObject, thePerk);
+            AdjustBoughtTextAndImageBrightness(childObject, thePerk);
         }
     }
 
@@ -90,7 +93,7 @@ public class SkillTree : MonoBehaviour
                 if(thePerk.PerkPurchase())
                 {
                     PerkDataClosed(buttonPressed);
-                    AdjustBoughtText(buttonPressed.transform.parent.parent, thePerk);
+                    AdjustBoughtTextAndImageBrightness(buttonPressed.transform.parent.parent, thePerk);
                     UpdateCurrentPoints();
                 }
             }
@@ -98,7 +101,7 @@ public class SkillTree : MonoBehaviour
             else if(thePerk.prevPerk != null && thePerk.prevPerk.perkNameGameObj == perkName && thePerk.prevPerk.activated)
             {
                 Debug.Log("This should run!");
-                AdjustBoughtText(buttonPressed.transform.parent.parent.parent.Find(thePerk.perkNameGameObj), thePerk);
+                AdjustBoughtTextAndImageBrightness(buttonPressed.transform.parent.parent.parent.Find(thePerk.perkNameGameObj), thePerk);
                 break;
             }
         }
