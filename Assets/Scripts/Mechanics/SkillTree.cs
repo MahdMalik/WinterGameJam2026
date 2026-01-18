@@ -37,6 +37,7 @@ public class SkillTree : MonoBehaviour
 
         foreach(Perk thePerk in Initializer.perks)
         {
+            Debug.Log(thePerk.perkNameGameObj);
             Transform childObject = transform.Find("Perks").Find(thePerk.perkNameGameObj);
             childObject.localPosition =  thePerk.perkUiPos;
             // Debug.Log($"Uhhh it was {thePerk.perkUiPos}");
@@ -45,6 +46,7 @@ public class SkillTree : MonoBehaviour
             childObject.GetChild(0).Find("PerkName").GetComponent<TextMeshProUGUI>().text = thePerk.perkNameDisplayed;
             childObject.GetChild(0).Find("PerkDesc").GetComponent<TextMeshProUGUI>().text = thePerk.perkDesc;
             childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"Cost: {thePerk.perkCost} Points";
+            
             AdjustBoughtText(childObject, thePerk);
         }
     }

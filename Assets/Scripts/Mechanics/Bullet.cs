@@ -10,18 +10,16 @@ public class Bullet : MonoBehaviour
 
     private LaserBlaster blaster;
 
-    private float bulletSpeed;
-    public void Activate(Vector3 playerPos, float theBulletSpeed, LaserBlaster theBlaster)
+    public void Activate(Vector3 playerPos, LaserBlaster theBlaster)
     {
         rb = GetComponent<Rigidbody2D>();
         directionShot = Initializer.PlayerFacing;
-        bulletSpeed = theBulletSpeed;
         blaster = theBlaster;
 
         transform.position = HelperFunctions.PutDistanceAway(playerPos, 1f);
 
-        float xVel = bulletSpeed * (directionShot == 2 ? 1 : directionShot == 4 ? -1 : 0);
-        float yVel = bulletSpeed * (directionShot == 1 ? 1 : directionShot == 3 ? -1 : 0);
+        float xVel = Initializer.bulletSpeed * (directionShot == 2 ? 1 : directionShot == 4 ? -1 : 0);
+        float yVel = Initializer.bulletSpeed * (directionShot == 1 ? 1 : directionShot == 3 ? -1 : 0);
 
         rb.velocity = new Vector2(xVel, yVel);
     }

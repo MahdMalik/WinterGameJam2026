@@ -32,11 +32,15 @@ public static class Initializer
     public static float useSpeedMultiplier = 1f;
     public static float cooldownMultiplier = 1f;
 
-    public static int playerDamage = 1;
+    public static float playerDamage = 1;
     
-    public static float iframeTime = 1.0f;
+    public static float timeCounterForInvincibility = 1.0f;
 
     public static int damageInSecTaken = 10;
+
+    public static int bulletSpeed = 7;
+
+    public static bool itemsUsePower = false;
 
 
     public static Perk[] LoadPerks()
@@ -45,12 +49,18 @@ public static class Initializer
         FasterDoors perk2 = new FasterDoors(1, perk1, new Vector2(194, 279), false);
         WalkSpeedBoost perk3 = new WalkSpeedBoost(1, perk2, new Vector2(461, 279), true);
         GuidingArrow perk4 = new GuidingArrow(1, perk3, new Vector2(728, 279), false);
-        
-        ExtraBattery perk5 = new ExtraBattery(1, null, new Vector2(57, 2), false);
 
-        FasterWeapons perk6 = new FasterWeapons(1, null, new Vector2(-73, -121), false);
-        DamageReduction perk7 = new DamageReduction(1, perk6, new Vector2(194, -275), false);
-        return new Perk[] {perk1, perk2, perk3, perk4, perk5, perk6, perk7};
+        ExtraBattery perk5 = new ExtraBattery(1, null, new Vector2(56, 2), false);
+        DamageReduction perk6 = new DamageReduction(1, perk5, new Vector2(280, 2), false);
+        ExtraBattery perk7 = new ExtraBattery(1, perk6, new Vector2(504, 2), true);
+        MoreInvincibility perk8 = new MoreInvincibility(1, perk7, new Vector2(728, 2), false);
+
+        FasterWeapons perk9 = new FasterWeapons(1, null, new Vector2(-73, -121), false);
+        FasterBullets perk10 = new FasterBullets(1, perk9, new Vector2(194, -275), false);
+        MoreDamage perk11 = new MoreDamage(1, perk10, new Vector2(461, -275), false);
+        ItemEfficiency perk12 = new ItemEfficiency(1, perk11, new Vector2(728, -275), false);
+
+        return new Perk[] {perk1, perk2, perk3, perk4, perk5, perk6, perk7, perk8, perk9, perk10, perk11, perk12};
     }
 
     public static Perk[] perks = LoadPerks();

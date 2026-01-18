@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private Sprite[] movementSprites;
 
     private bool hasBeenHit;
-    private float timeCounterForInvincibility = Initializer.iframeTime;
     private float iframeTime;
 
     private Vector2 knockbackUnitDirection;
@@ -130,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         if(hasBeenHit)
         {
             iframeTime += Time.deltaTime;
-            if(iframeTime > timeCounterForInvincibility)
+            if(iframeTime > Initializer.timeCounterForInvincibility)
             {
                 hasBeenHit = false;
                 GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,

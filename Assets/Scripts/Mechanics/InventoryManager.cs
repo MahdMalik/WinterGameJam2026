@@ -21,6 +21,8 @@ public class InventoryManager : MonoBehaviour
     public Sprite SelectedSlotImage;
 
     public static event Action itemsRemoved;
+
+    public Battery theBattery;
     
     // Awake is called before start, which we need in this case to make sure it runs first so the sword can get added here
     void Awake()
@@ -151,6 +153,10 @@ public class InventoryManager : MonoBehaviour
     {
         if(inventory[selectedSlot] != null && !inventory[selectedSlot].getCooldown() && !inventory[selectedSlot].getActivated())
         {
+            if(Initializer.itemsUsePower)
+            {
+                theBattery.AlterBattery(-3);
+            }
             inventory[selectedSlot].Activate();
             // Debug.Log(inventory[selectedSlot]);
         }

@@ -29,7 +29,7 @@ public class BasicAI : MonoBehaviour
 
     private float enemyRadius;
 
-    public int healthPoints = 5;
+    public float healthPoints = 5;
     private bool hasBeenHit;
     public float timeCounterForInvincibility = 1.0f;
     private float iframeTime;

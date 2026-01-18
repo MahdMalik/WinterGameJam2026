@@ -6,7 +6,6 @@ using UnityEngine;
 public class LaserBlaster : Item
 {
     public Bullet theBullet;
-    public float bulletSpeed;
     
     // gets the origianl clip time in seconds, divides that by activation time to see how much to change
     //ratio of playback speed by. 
@@ -38,7 +37,7 @@ public class LaserBlaster : Item
     {
         theBullet.gameObject.SetActive(true);
         theBullet.gameObject.GetComponent<Collider2D>().enabled = true;
-        theBullet.Activate(player.transform.position, bulletSpeed, this);
+        theBullet.Activate(player.transform.position, this);
         base.Activate();
     }
 }
