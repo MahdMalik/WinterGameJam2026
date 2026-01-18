@@ -260,6 +260,8 @@ public class SceneManagerer : MonoBehaviour
         Initializer.PixelCamera.gameObject.SetActive(true);
         if (goingToMain) {
             Initializer.PixelCamera.transform.position = new Vector3 (PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z - 20.0f);
+        } else {
+            Initializer.PixelCamera.transform.position = new Vector3 (0.0f, 0.0f, -20.0f);
         }
         for (int i = 27; i > 7; i--) {
             Initial.GetComponent<Initializing>().Initialization();

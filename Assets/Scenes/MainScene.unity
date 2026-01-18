@@ -235531,7 +235531,7 @@ MonoBehaviour:
   PlayerSprite: {fileID: 1912858126}
   playerAnim: {fileID: 1912858131}
   SceneManagement: {fileID: 0}
-  theBattery: {fileID: 0}
+  theBattery: {fileID: 378597920}
   counterForKnockback: 0.1
 --- !u!95 &1912858131
 Animator:
