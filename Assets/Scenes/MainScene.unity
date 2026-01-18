@@ -2826,6 +2826,14 @@ PrefabInstance:
       propertyPath: counterForKnockback
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1355839922445240947, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355839922445240947, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1648231649488884980, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2844,7 +2852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1648231649488884980, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 30.5
       objectReference: {fileID: 0}
     - target: {fileID: 1648231649488884980, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2882,6 +2890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5287945704453534271, guid: 206e3dd6fc8d1604b8afd51ddda02fdd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 071f847d47359304f8db173499899a30, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
