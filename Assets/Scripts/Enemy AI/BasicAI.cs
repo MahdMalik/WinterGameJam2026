@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class BasicAI : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class BasicAI : MonoBehaviour
     private bool inKnockback;
     private float knockbackTime;
     public float counterForKnockback = 0.1f;
-
+    public bool isBoss;
     public Sound[] SFXSounds;
     [SerializeField] private AudioSource SFXSource;
     [SerializeField] private bool seeingSoundCooldown;
@@ -306,6 +307,9 @@ public class BasicAI : MonoBehaviour
                 Initializer.numKillsThisRound += 1;
                 PlaySFX("Dead");
                 Batteri.GetComponent<Battery>().AlterBattery(5.0f);
+                if (isBoss) {
+                    SceneManager.LoadSceneAsync(3);
+                }
                 gameObject.SetActive(false);
             }
             else
