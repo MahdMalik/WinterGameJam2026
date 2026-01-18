@@ -33,6 +33,10 @@ public static class Initializer
     public static float cooldownMultiplier = 1f;
 
     public static int playerDamage = 1;
+    
+    public static float iframeTime = 1.0f;
+
+    public static int damageInSecTaken = 10;
 
 
     public static Perk[] LoadPerks()

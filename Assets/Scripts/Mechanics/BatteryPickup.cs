@@ -26,7 +26,7 @@ public class BatteryPickup : Item
     // When we first acitvate it, have to set these slash directions, then we can trigger the slashing.
     public override void Activate()
     {
-        theBattery.RestoreBattery(batteryAddCount);
+        theBattery.AlterBattery(batteryAddCount);
         base.Activate();
     }
 }

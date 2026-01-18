@@ -62,12 +62,18 @@ public class Battery : MonoBehaviour
         batteryText.text = $"{Mathf.CeilToInt(Initializer.batteryPower / Initializer.maxBattery * 100)}%";
     }
 
-    public void RestoreBattery(float restoreAmount)
+    // pass in negative number to reduce, positive to add
+    public void AlterBattery(float restoreAmountInSec)
     {
-        Initializer.batteryPower += restoreAmount;
+        // restores that amount of seconds
+        Initializer.batteryPower += decreasePerSec * restoreAmountInSec;
         if(Initializer.batteryPower > Initializer.maxBattery)
         {
             Initializer.batteryPower = Initializer.maxBattery;
+        }
+        else if(Initializer.batteryPower < 0)
+        {
+            Initializer.batteryPower = 0;
         }
     }
 }

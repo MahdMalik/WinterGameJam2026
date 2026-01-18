@@ -19,8 +19,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject SceneManagement = null;
 
     private float lastUpdate;
+    public Battery theBattery;
 
     private Sprite[] movementSprites;
+
+    private bool hasBeenHit;
+    private float timeCounterForInvincibility = Initializer.iframeTime;
+    private float iframeTime;
+
+    private Vector2 knockbackUnitDirection;
+    private bool inKnockback;
+    private float knockbackTime;
+    public float counterForKnockback = 0.1f;
+
     // make sure that when the battery dies out, we restart the game (for now; normally
     // there'd be a game over screen)
     void Start()
@@ -55,37 +66,51 @@ public class PlayerMovement : MonoBehaviour
             OpeningDoor = true;
         }
 
-        //Check if walking
-        if (rb.velocity.x == 0 && rb.velocity.y == 0) {
-            playerAnim.SetBool("Walking", false);
-            Initializer.playerMoving = false;
-        } 
-        else if (Initializer.worldFrozen == false)
+        if(inKnockback)
         {
-            playerAnim.SetBool("Walking", true);
-            Initializer.playerMoving = true;
-            if(Initializer.canTurnInteract)
+            knockbackTime += Time.deltaTime;
+            rb.MovePosition(transform.position + new Vector3(knockbackUnitDirection.x, knockbackUnitDirection.y));
+            if(knockbackTime > counterForKnockback)
             {
-                //Facing Logic
-                if(rb.velocity.x == 0 && rb.velocity.y > 0) {
-                    Initializer.PlayerFacing = 1;
-                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
-                }//Up
-                if (rb.velocity.x > 0) {
-                    Initializer.PlayerFacing = 2;
-                    interactSquare.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y + 0.5f, transform.position.z);
-                }//Right
-                if (rb.velocity.x == 0 && rb.velocity.y < 0) {
-                    Initializer.PlayerFacing = 3;
-                    interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
-                }//Down
-                if (rb.velocity.x < 0) {
-                    Initializer.PlayerFacing = 4;
-                    interactSquare.transform.position = new Vector3(transform.position.x - 0.8f, transform.position.y + 0.5f, transform.position.z);
-                }//Left
+                inKnockback = false;
+                knockbackTime = 0;
+            }
 
-                playerAnim.SetInteger("WalkingDirection", Initializer.PlayerFacing);
-                PlayerSprite.sprite = movementSprites[Initializer.PlayerFacing - 1];
+        }
+        else
+        {
+            //Check if walking
+            if (rb.velocity.x == 0 && rb.velocity.y == 0) {
+                playerAnim.SetBool("Walking", false);
+                Initializer.playerMoving = false;
+            } 
+            else if (Initializer.worldFrozen == false)
+            {
+                playerAnim.SetBool("Walking", true);
+                Initializer.playerMoving = true;
+                if(Initializer.canTurnInteract)
+                {
+                    //Facing Logic
+                    if(rb.velocity.x == 0 && rb.velocity.y > 0) {
+                        Initializer.PlayerFacing = 1;
+                        interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
+                    }//Up
+                    if (rb.velocity.x > 0) {
+                        Initializer.PlayerFacing = 2;
+                        interactSquare.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y + 0.5f, transform.position.z);
+                    }//Right
+                    if (rb.velocity.x == 0 && rb.velocity.y < 0) {
+                        Initializer.PlayerFacing = 3;
+                        interactSquare.transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
+                    }//Down
+                    if (rb.velocity.x < 0) {
+                        Initializer.PlayerFacing = 4;
+                        interactSquare.transform.position = new Vector3(transform.position.x - 0.8f, transform.position.y + 0.5f, transform.position.z);
+                    }//Left
+
+                    playerAnim.SetInteger("WalkingDirection", Initializer.PlayerFacing);
+                    PlayerSprite.sprite = movementSprites[Initializer.PlayerFacing - 1];
+                }
             }
         }
         float distFromCenter = (float) Math.Sqrt( Math.Pow(Math.Abs(transform.position.x), 2) + Math.Pow(Math.Abs(transform.position.y), 2));
@@ -94,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
             // Debug.Log($"They went farther! At dist {distFromCenter}");
             Initializer.maxDistFromCenter = distFromCenter;
         }
-
         // update every secohnd their time survived 
         if(lastUpdate > 1)
         {
@@ -102,6 +126,18 @@ public class PlayerMovement : MonoBehaviour
             lastUpdate = 0;
         }
         lastUpdate += Time.deltaTime;
+
+        if(hasBeenHit)
+        {
+            iframeTime += Time.deltaTime;
+            if(iframeTime > timeCounterForInvincibility)
+            {
+                hasBeenHit = false;
+                GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,
+                    1);
+                iframeTime = 0;
+            }
+        }
     }
 
     // resets the player when a new run starts
@@ -130,5 +166,19 @@ public class PlayerMovement : MonoBehaviour
     void OnDestroy()
     {
         Battery.OnPlayerDied -= ResetPlayer;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.name == "Enemy" && !hasBeenHit)
+        {
+            Debug.Log("Player's been hit!");
+            hasBeenHit = true;
+            inKnockback = true;
+            theBattery.AlterBattery(Initializer.damageInSecTaken * -1);
+            knockbackUnitDirection = (transform.position - other.gameObject.transform.position).normalized * .25f;
+            GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b,
+                0.5f);
+        }
     }
 }

@@ -37,8 +37,11 @@ public class Bullet : MonoBehaviour
         }
         else if(other.gameObject.name == "Enemy")
         {
-            other.gameObject.GetComponent<BasicAI>().WasHit(0.1f);
-            if(blaster != null) blaster.OnEndActivation();
+            if(blaster != null && blaster.getActivated())
+            {
+                other.gameObject.GetComponent<BasicAI>().WasHit(0.1f);
+                blaster.OnEndActivation();
+            }
         }
     }
 }

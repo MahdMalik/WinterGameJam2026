@@ -66,7 +66,7 @@ public class Lightsaber : Item
         {
             OnEndActivation();
         }
-        else if(other.gameObject.name == "Enemy")
+        else if(other.gameObject.name == "Enemy" && activated)
         {
             other.gameObject.GetComponent<BasicAI>().WasHit(0.25f);
         }
