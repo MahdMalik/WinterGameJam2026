@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FasterWeapons : Perk
 {
-    public FasterWeapons(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("FasterWeapons", "Speeds Up Weapon Usage by 20%", cost, prev, pos, upgradedVer, "Faster Weapons")
+    public FasterWeapons(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("FasterWeapons", "SPEEDS UP WEAPON USAGE BY 20%", cost, prev, pos, upgradedVer, "FASTER WEAPONS")
     {
     }
 

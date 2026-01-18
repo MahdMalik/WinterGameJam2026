@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoreInvincibility : Perk
 {
-    public MoreInvincibility(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("MoreInvincibility", "Double invincibility time after an attack", cost, prev, pos, upgradedVer, "More Invincibility")
+    public MoreInvincibility(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("MoreInvincibility", "DOUBLE INVINCIBILITY TIME AFTER AN ATTACK", cost, prev, pos, upgradedVer, "MORE INVINCIBILITY")
     {
     }
 

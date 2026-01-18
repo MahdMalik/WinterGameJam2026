@@ -23,7 +23,7 @@ public class SkillTree : MonoBehaviour
 
     void AdjustBoughtText(Transform mainPerkObject, Perk thePerk)
     {
-        mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = thePerk.activated ? "Bought" : thePerk.CheckAvailableStatus() ? "Buy" : "Locked";
+        mainPerkObject.GetChild(0).Find("BuyPerk").GetChild(0).GetComponent<TextMeshProUGUI>().text = thePerk.activated ? "BOUGHT" : thePerk.CheckAvailableStatus() ? "BUY" : "LOCKED";
     }
     
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class SkillTree : MonoBehaviour
 
             childObject.GetChild(0).Find("PerkName").GetComponent<TextMeshProUGUI>().text = thePerk.perkNameDisplayed;
             childObject.GetChild(0).Find("PerkDesc").GetComponent<TextMeshProUGUI>().text = thePerk.perkDesc;
-            childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"Cost: {thePerk.perkCost} Points";
+            childObject.GetChild(0).Find("PerkCost").GetComponent<TextMeshProUGUI>().text = $"COST: {thePerk.perkCost} POINTS";
             
             AdjustBoughtText(childObject, thePerk);
         }

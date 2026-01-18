@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkSpeedBoost : Perk
 {
-    public WalkSpeedBoost(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("WalkSpeedBoost", "Increase walking speed by 15%", cost, prev, pos, upgradedVer, "Walk Speed Boost")
+    public WalkSpeedBoost(int cost, Perk prev, Vector2 pos, bool upgradedVer) : base("WalkSpeedBoost", "INCREASE WALKING SPEED BY 15%", cost, prev, pos, upgradedVer, "WALK SPEED BOOST")
     {
     }
 
