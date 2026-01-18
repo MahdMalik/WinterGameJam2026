@@ -62,11 +62,11 @@ public class Lightsaber : Item
     {
         // so it can get a bit... quirky if you disable the bullet when this is called
         Debug.Log($"name was {other.gameObject.name}");
-        if(other.gameObject.name == "Tilemap" || (other.gameObject.name == "DoorHitbox" && other.gameObject.GetComponentInParent<Door>().GetDoorStatus() != 1))
-        {
-            OnEndActivation();
-        }
-        else if(other.gameObject.name == "Enemy" && activated)
+        // if(other.gameObject.name == "Tilemap" || (other.gameObject.name == "DoorHitbox" && other.gameObject.GetComponentInParent<Door>().GetDoorStatus() != 1))
+        // {
+        //     OnEndActivation();
+        // }
+        if(other.gameObject.name == "Enemy" && activated)
         {
             other.gameObject.GetComponent<BasicAI>().WasHit(0.25f);
         }

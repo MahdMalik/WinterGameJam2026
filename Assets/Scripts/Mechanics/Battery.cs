@@ -65,8 +65,12 @@ public class Battery : MonoBehaviour
     // pass in negative number to reduce, positive to add
     public void AlterBattery(float restoreAmountInSec)
     {
+        Debug.Log("Should run individually");
+        Debug.Log($"Current battery: {Initializer.batteryPower}");
+        Debug.Log($"Amount of seconds to restore is {restoreAmountInSec}, decrease per second is {decreasePerSec}");
         // restores that amount of seconds
         Initializer.batteryPower += decreasePerSec * restoreAmountInSec;
+        Debug.Log($"Final battery: {Initializer.batteryPower}");
         if(Initializer.batteryPower > Initializer.maxBattery)
         {
             Initializer.batteryPower = Initializer.maxBattery;

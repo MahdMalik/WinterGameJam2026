@@ -128,32 +128,12 @@ public class InventoryManager : MonoBehaviour
         return RemoveItem(selectedSlot);
     }
 
-    // resets entire inventory, like on death
-    private void ResetInventory()
-    {
-        // goes through every item and removes it cyclically, by starting at the selected item and moving
-        // to the right. Make sure to account for wraparound too
-        for(int i = 0; i < numItemsInInventory; i++)
-        {
-            RemoveItem();
-            selectedSlot++;
-            if(selectedSlot == numItemsInInventory)
-            {
-                selectedSlot = 0;
-            }
-        }
-        Debug.Log($"FINAL INDEX: {selectedSlot}");
-
-        // once all the items are official removed, emit this so all the items can reset themsevles individually
-        itemsRemoved.Invoke();
-    }
-
     // activates the selected item so long as the slot is non empty and its available
     public void ActivateItem()
     {
         if(inventory[selectedSlot] != null && !inventory[selectedSlot].getCooldown() && !inventory[selectedSlot].getActivated())
         {
-            if(Initializer.itemsUsePower)
+            if(Initializer.itemsUsePower && inventory[selectedSlot].itemName != "BatteryPickup")
             {
                 theBattery.AlterBattery(-1.5f);
             }

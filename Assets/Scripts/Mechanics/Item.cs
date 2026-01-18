@@ -8,7 +8,7 @@ public abstract class Item : MonoBehaviour
     public PlayerMovement player;
     
     [SerializeField]
-    protected string itemName;
+    public string itemName;
     [SerializeField]
     protected Vector2 originalWorldPos;
     [SerializeField]
